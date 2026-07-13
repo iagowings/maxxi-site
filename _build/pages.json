@@ -1,0 +1,150 @@
+[
+  {
+    "folder": "",
+    "page": "/pages/home.jsx",
+    "title": "Maxxi Saúde — Cuidado humano, tecnologia de capital · Altamira/PA",
+    "desc": "Diagnóstico por imagem e análises clínicas em Altamira/PA. Tomografia de 128 canais — única em clínica privada da região. 12 especialidades, plantão 24h.",
+    "inline": ""
+  },
+  {
+    "folder": "especialidades",
+    "page": "/pages/especialidades.jsx",
+    "title": "Especialidades médicas em Altamira/PA — Maxxi Saúde",
+    "desc": "12 especialidades médicas em Altamira/PA: ginecologia, mastologia, pediatria, cardiologia, psiquiatria, odontologia, dermatologia e mais.",
+    "inline": ""
+  },
+  {
+    "folder": "exames",
+    "page": "/pages/exames.jsx",
+    "title": "Exames de imagem e análises clínicas em Altamira — Maxxi Saúde",
+    "desc": "Tomografia 128 canais, ressonância magnética, mamografia digital, ultrassonografia, raio-x 24h e laboratório de análises clínicas em Altamira/PA.",
+    "inline": ""
+  },
+  {
+    "folder": "tomografia-128-canais",
+    "page": "/pages/tecnologia.jsx",
+    "title": "Tomografia de 128 canais em Altamira — Maxxi Saúde",
+    "desc": "A única tomografia de 128 canais em clínica privada da região do Xingu. Imagens de alta definição em segundos, menor dose de radiação e plantão 24h.",
+    "inline": ""
+  },
+  {
+    "folder": "convenios",
+    "page": "/pages/convenios.jsx",
+    "title": "Convênios aceitos — Maxxi Saúde · Altamira/PA",
+    "desc": "Veja os convênios e planos de saúde aceitos na Maxxi Saúde em Altamira/PA. Atendemos também consultas e exames particulares.",
+    "inline": ""
+  },
+  {
+    "folder": "agendar-exame",
+    "page": "/pages/agendar.jsx",
+    "title": "Agendar exame ou consulta — Maxxi Saúde · Altamira/PA",
+    "desc": "Agende seu exame ou consulta na Maxxi Saúde, em Altamira/PA, direto pelo WhatsApp da especialidade.",
+    "inline": ""
+  },
+  {
+    "folder": "resultados",
+    "page": "/pages/resultados.jsx",
+    "title": "Resultados de exames online — Maxxi Saúde",
+    "desc": "Acesse os resultados dos seus exames online, 24 horas por dia, pelo portal da Maxxi Saúde.",
+    "inline": ""
+  },
+  {
+    "folder": "sobre",
+    "page": "/pages/sobre.jsx",
+    "title": "A clínica — Maxxi Saúde · 10 anos cuidando do Xingu",
+    "desc": "Conheça a história, a equipe e a estrutura da Maxxi Saúde, referência em diagnóstico por imagem e análises clínicas em Altamira/PA.",
+    "inline": ""
+  },
+  {
+    "folder": "faq",
+    "page": "/pages/faq.jsx",
+    "title": "Dúvidas frequentes — Maxxi Saúde",
+    "desc": "Respostas às perguntas mais frequentes sobre convênios, agendamento, exames, resultados e atendimento na Maxxi Saúde.",
+    "inline": ""
+  },
+  {
+    "folder": "contato",
+    "page": "/pages/contato.jsx",
+    "title": "Contato e localização — Maxxi Saúde · Altamira/PA",
+    "desc": "Endereço, mapa, telefones por especialidade e convênios aceitos na Maxxi Saúde, em Altamira/PA.",
+    "inline": ""
+  },
+  {
+    "folder": "termos-e-condicoes",
+    "page": "/pages/legal.jsx",
+    "title": "Termos e Condições — Maxxi Saúde",
+    "desc": "Termos e condições de uso do site e dos serviços da Maxxi Saúde.",
+    "inline": "<script>window.LEGAL_KEY=\"termos-e-condicoes\";</script>"
+  },
+  {
+    "folder": "politica-de-cookies-br",
+    "page": "/pages/legal.jsx",
+    "title": "Política de Cookies — Maxxi Saúde",
+    "desc": "Saiba como o site da Maxxi Saúde utiliza cookies e trata seus dados conforme a LGPD.",
+    "inline": "<script>window.LEGAL_KEY=\"politica-de-cookies-br\";</script>"
+  },
+
+  {
+    "folder": "exames/tomografia-computadorizada",
+    "page": "/pages/exame.jsx",
+    "title": "Tomografia Computadorizada em Altamira — Maxxi Saúde",
+    "desc": "Tomografia computadorizada de 128 canais em Altamira/PA: imagens de alta definição em segundos, menor dose de radiação e plantão 24h.",
+    "inline": "<script>window.EXAME_SLUG=\"tomografia-computadorizada\";</script>"
+  },
+  {
+    "folder": "exames/angiotomografia-128-canais",
+    "page": "/pages/exame.jsx",
+    "title": "Angiotomografia (128 canais) em Altamira — Maxxi Saúde",
+    "desc": "Angiotomografia de 128 canais em Altamira/PA: estudo de vasos e coração com reconstruções 3D de alta resolução.",
+    "inline": "<script>window.EXAME_SLUG=\"angiotomografia-128-canais\";</script>"
+  },
+  {
+    "folder": "exames/ressonancia-magnetica",
+    "page": "/pages/exame.jsx",
+    "title": "Ressonância Magnética em Altamira — Maxxi Saúde",
+    "desc": "Ressonância magnética de alto campo (1.5T) em Altamira/PA para exames neurológicos, ortopédicos, abdominais e de coluna.",
+    "inline": "<script>window.EXAME_SLUG=\"ressonancia-magnetica\";</script>"
+  },
+  {
+    "folder": "exames/mamografia-digital",
+    "page": "/pages/exame.jsx",
+    "title": "Mamografia Digital em Altamira — Maxxi Saúde",
+    "desc": "Mamografia 100% digital em Altamira/PA, com menor compressão e alta sensibilidade para detecção precoce do câncer de mama.",
+    "inline": "<script>window.EXAME_SLUG=\"mamografia-digital\";</script>"
+  },
+  {
+    "folder": "exames/ultrassonografia",
+    "page": "/pages/exame.jsx",
+    "title": "Ultrassonografia em Altamira — Maxxi Saúde",
+    "desc": "Ultrassonografia em Altamira/PA: abdome, pelve, obstetrícia, tireoide, mamas, articulações e Doppler vascular.",
+    "inline": "<script>window.EXAME_SLUG=\"ultrassonografia\";</script>"
+  },
+  {
+    "folder": "exames/radiografia-em-geral",
+    "page": "/pages/exame.jsx",
+    "title": "Radiografia / Raio-X em Altamira — Maxxi Saúde",
+    "desc": "Raio-X digital em Altamira/PA para tórax, ossos, coluna e seios da face, com plantão 24h.",
+    "inline": "<script>window.EXAME_SLUG=\"radiografia-em-geral\";</script>"
+  },
+  {
+    "folder": "exames/ecocardiograma",
+    "page": "/pages/exame.jsx",
+    "title": "Ecocardiograma em Altamira — Maxxi Saúde",
+    "desc": "Ecocardiograma em Altamira/PA: ultrassom do coração com Doppler para avaliar válvulas e função cardíaca.",
+    "inline": "<script>window.EXAME_SLUG=\"ecocardiograma\";</script>"
+  },
+  {
+    "folder": "exames/densitometria-ossea",
+    "page": "/pages/exame.jsx",
+    "title": "Densitometria Óssea em Altamira — Maxxi Saúde",
+    "desc": "Densitometria óssea em Altamira/PA para diagnóstico e acompanhamento de osteoporose e osteopenia.",
+    "inline": "<script>window.EXAME_SLUG=\"densitometria-ossea\";</script>"
+  },
+  {
+    "folder": "exames/laboratorio-de-analises-clinicas",
+    "page": "/pages/exame.jsx",
+    "title": "Laboratório de Análises Clínicas em Altamira — Maxxi Saúde",
+    "desc": "Laboratório de análises clínicas em Altamira/PA: exames de sangue, urina e hormonais com coleta diária e resultados online.",
+    "inline": "<script>window.EXAME_SLUG=\"laboratorio-de-analises-clinicas\";</script>"
+  }
+]

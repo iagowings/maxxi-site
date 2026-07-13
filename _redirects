@@ -1,0 +1,21 @@
+# Netlify / Cloudflare Pages redirect map — 301 permanent.
+# Folder index.html files already serve clean trailing-slash URLs automatically.
+
+# --- Legacy flat .html URLs from the old prototype ---
+/index.html              /                          301!
+/especialidades.html     /especialidades/           301
+/tecnologia.html         /tomografia-128-canais/    301
+/sobre.html              /sobre/                    301
+/resultados.html         /resultados/               301
+/faq.html                /faq/                      301
+/contato.html            /contato/                  301
+
+# --- Legacy WordPress pages with no dedicated page in this site ---
+/fale-conosco/           /contato/                  301
+/altamira/               /                          301
+/cestrelas/              /                          301
+/obrigado-mulher/        /                          301
+/obrigado-voucher/       /                          301
+
+# --- External results portal (kept off-site, same as the live site) ---
+/resultados-online/      https://www.medcloud.co/?page=maxxi   301

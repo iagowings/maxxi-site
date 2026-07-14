@@ -214,7 +214,7 @@ const EQUIPMENT = [
 ];
 
 const CONVENIOS = [
-  "Fusex", "Saúde Caixa", "Amil", "Sul América", "Unimed", "Saúde Bradesco", "Particular",
+  "Fusex", "Saúde Caixa", "Amil", "Sul América", "Unimed", "Saúde Bradesco",
 ];
 
 /* =============================================================

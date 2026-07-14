@@ -89,7 +89,7 @@ function SobrePage() {
                 ["2014", "Fundação", "O radiologista Dr. Anísio Fernando Chaves abre as portas da Maxxi Saúde em Altamira."],
                 ["2017", "Plantão 24h", "Inauguração do plantão 24 horas de tomografia e raio-x para atender urgências."],
                 ["2020", "Análises clínicas", "Ampliação do laboratório próprio, integrando exames de imagem e análises clínicas no mesmo lugar."],
-                ["2024", "10 anos & nova era", "Comemoração da primeira década e chegada da Tomografia de 128 canais — única no país em clínica privada da região."],
+                ["2024", "10 anos & nova era", "Comemoração da primeira década e chegada da Tomografia de 128 canais — única na cidade em clínica privada da região."],
                 ["Hoje", "12 especialidades", "Equipe ampliada com novas especialidades como Mastologia, Psiquiatria, Neurologia e mais."],
               ].map(([year, title, body], i) => (
                 <div key={year} style={{ position: "relative", paddingBottom: i < 4 ? 36 : 0 }}>

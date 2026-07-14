@@ -177,7 +177,7 @@ const EQUIPMENT = [
     slug: "tomografia-128",
     name: "Tomografia Computadorizada 128 Canais",
     short: "Tomografia 128",
-    badge: "Única no país",
+    badge: "Única na cidade",
     summary: "O primeiro equipamento de 128 canais instalado em uma clínica privada da região Norte. Imagens com altíssima definição, exames em segundos, menor dose de radiação e diagnóstico mais preciso para você.",
     bullets: [
       "Aquisição em até 0,33 s por rotação",
@@ -214,7 +214,7 @@ const EQUIPMENT = [
 ];
 
 const CONVENIOS = [
-  "Bradesco Saúde", "Caixa Saúde", "Gama Saúde", "Hapvida", "Unimed", "Cassi", "Postal Saúde", "Petrobrás", "Particular",
+  "Fusex", "Saúde Caixa", "Amil", "Sul América", "Unimed", "Saúde Bradesco", "Particular",
 ];
 
 /* =============================================================

@@ -46,13 +46,17 @@ function Icon({ name, size = 20, stroke = 1.75, className = "", style = {} }) {
     "shield":       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>,
     "award":        <><circle cx="12" cy="8" r="6"/><path d="M9 13.5L7 22l5-3 5 3-2-8.5"/></>,
     "image":        <><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></>,
+    "mic":          <><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4M8 21h8"/></>,
+    "volume":       <><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></>,
+    "stop":         <rect x="6" y="6" width="12" height="12" rx="2"/>,
     "play":         <path d="M6 4l14 8-14 8V4z"/>,
     "lock":         <><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></>,
     "file-text":    <><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></>,
     "info":         <><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></>,
   };
   return (
-    <svg className={"icon " + className} width={size} height={size} viewBox="0 0 24 24" fill="none"
+    <svg aria-hidden="true" focusable="false"
+         className={"icon " + className} width={size} height={size} viewBox="0 0 24 24" fill="none"
          stroke="currentColor" strokeWidth={stroke} strokeLinecap="round" strokeLinejoin="round" style={style}>
       {paths[name] || null}
     </svg>

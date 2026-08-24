@@ -362,7 +362,7 @@ function WhatsAppBubble() {
    Page shell — Header + main + Footer + WhatsApp bubble
    Also handles reveal-on-scroll for .reveal elements.
    ============================================================= */
-function PageShell({ active, children }) {
+function PageShell({ active, children, hideBubble }) {
   useEffectSC(() => {
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) {
@@ -382,7 +382,7 @@ function PageShell({ active, children }) {
       <Header active={active}/>
       <main style={{ paddingTop: 76 }}>{children}</main>
       <Footer/>
-      <WhatsAppBubble/>
+      {!hideBubble && <WhatsAppBubble/>}
     </>
   );
 }

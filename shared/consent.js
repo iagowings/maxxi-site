@@ -22,6 +22,11 @@ var META_PIXEL_ID = "3024665221116418";
     fbq('init', META_PIXEL_ID);
     fbq('track', 'PageView');
 
+    // Sinal dedicado da página anunciada (retargeting + otimização).
+    if (location.pathname.indexOf("/tomografia-128-canais") === 0) {
+      fbq('track', 'ViewContent', { content_name: 'tomografia-128-canais' });
+    }
+
     // Clique em qualquer CTA de WhatsApp = Lead. Nenhum dado de saúde é enviado.
     document.addEventListener("click", function (ev) {
       var a = ev.target.closest && ev.target.closest('a[href*="wa.me"]');
@@ -33,11 +38,12 @@ var META_PIXEL_ID = "3024665221116418";
     try { localStorage.setItem(KEY, ok ? "granted" : "denied"); } catch (e) {}
     var el = document.getElementById("consent-bar");
     if (el) el.remove();
-    if (ok) loadPixel();
+    if (!ok && window.fbq) fbq("consent", "revoke"); // para de enviar já nesta visita
   }
 
-  if (saved === "granted") { loadPixel(); return; }
-  if (saved === "denied") return;
+  // Modelo opt-out: o pixel sobe em toda visita, exceto para quem recusou.
+  if (saved !== "denied") loadPixel();
+  if (saved) return; // já escolheu — não mostra o aviso de novo
 
   function banner() {
     var bar = document.createElement("div");
@@ -45,7 +51,7 @@ var META_PIXEL_ID = "3024665221116418";
     bar.setAttribute("role", "dialog");
     bar.setAttribute("aria-label", "Aviso de cookies");
     bar.innerHTML =
-      '<p>Usamos cookies para medir a audiência do site e o resultado dos nossos anúncios. ' +
+      '<p>Usamos cookies para medir a audiência do site e o resultado dos nossos anúncios. Você pode recusar. ' +
       'Nenhum dado de saúde é coletado aqui. ' +
       '<a href="/politica-de-cookies-br/">Política de Cookies</a> · ' +
       '<a href="/politica-de-privacidade/">Privacidade</a></p>' +

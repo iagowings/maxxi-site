@@ -115,7 +115,11 @@ function Footer() {
     }}>
       <div className="container" style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr 1fr", gap: 48 }}>
         <div>
-          <img src="/assets/logo-10-anos.png" alt="Maxxi Saúde — 10 anos" style={{ height: 80, marginBottom: 20, filter: "brightness(0) invert(1)" }}/>
+          {/* width/height explicitos + maxWidth: o PNG tem 1652px de largura e, so com
+              height:80, renderizava 418px — mais largo que a tela e empurrava a pagina toda. */}
+          <img src="/assets/logo-10-anos.png" alt="Maxxi Saúde — 10 anos"
+               width="418" height="80"
+               style={{ width: 418, height: "auto", maxWidth: "100%", marginBottom: 20, filter: "brightness(0) invert(1)" }}/>
           <p style={{ color: "rgba(255,255,255,0.74)", fontSize: 14, lineHeight: 1.6, maxWidth: 320 }}>
             Referência em diagnóstico por imagem e análises clínicas em Altamira / PA.
             Atendimento humanizado, há mais de 10 anos cuidando do Xingu.

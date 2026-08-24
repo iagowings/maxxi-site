@@ -65,6 +65,10 @@ function EspecialidadesPage() {
                 overflow-x: auto;
                 padding: 2px 20px 6px;
                 margin: 0 -20px;
+                /* Sem largura explicita o align-items:stretch da coluna estica a
+                   faixa ate o conteudo (656px) e o overflow-x nunca entra em acao.
+                   100% + 40px = largura do container mais as margens negativas. */
+                width: calc(100% + 40px);
                 scrollbar-width: none;
                 -ms-overflow-style: none;
                 scroll-snap-type: x mandatory;

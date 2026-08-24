@@ -121,6 +121,12 @@ function TecnologiaPage() {
                 <EquipmentRow key={eq.slug} eq={eq} flip={i % 2 === 1}/>
               ))}
             </div>
+            <style>{`
+              @media (max-width: 860px) {
+                .equip-row { grid-template-columns: 1fr !important; padding: 24px !important; }
+                .equip-row > div { order: 0 !important; }
+              }
+            `}</style>
           </div>
         </section>
 
@@ -211,7 +217,7 @@ function ScannerArt() {
 
 function EquipmentRow({ eq, flip }) {
   return (
-    <div id={eq.slug} className="lift" style={{
+    <div id={eq.slug} className="lift equip-row" style={{
       display: "grid",
       gridTemplateColumns: flip ? "1fr 1.2fr" : "1.2fr 1fr",
       gap: 32, alignItems: "center",

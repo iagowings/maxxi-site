@@ -50,7 +50,7 @@ function ExamePage() {
         </section>
 
         <section className="section-pad-sm">
-          <div className="container" style={{ maxWidth: 880, display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: 32, alignItems: "start" }}>
+          <div className="container" id="exam-detail-grid" style={{ maxWidth: 880, display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: 32, alignItems: "start" }}>
             <div>
               <h2 style={{ fontSize: 26, fontWeight: 800, color: "var(--fg-strong)", letterSpacing: "-0.02em", margin: "0 0 14px" }}>Sobre o exame</h2>
               <p style={{ fontSize: 16, color: "var(--fg-default)", lineHeight: 1.7, margin: 0 }}>{exam.description}</p>
@@ -63,6 +63,7 @@ function ExamePage() {
               <p style={{ fontSize: 14.5, color: "var(--fg-muted)", lineHeight: 1.6, margin: 0 }}>{exam.prep}</p>
             </Card>
           </div>
+          <style>{`@media (max-width: 860px) { #exam-detail-grid { grid-template-columns: 1fr !important; } }`}</style>
         </section>
 
         <section className="section-pad-sm" style={{ background: "var(--bg-subtle, #f7f9fb)" }}>

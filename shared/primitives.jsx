@@ -81,9 +81,12 @@ function SectionTitle({ eyebrow, eyebrowColor, title, kicker, align = "left", ma
 /* ---------------- Button ---------------- */
 function Button({ children, variant = "primary", size = "md", icon, iconAfter, onClick, href, target, style: extra = {}, type, fullWidth }) {
   const base = {
-    fontFamily: "inherit", fontWeight: 700, lineHeight: 1, borderRadius: 999,
+    fontFamily: "inherit", fontWeight: 700, lineHeight: 1.2, borderRadius: 999,
     display: fullWidth ? "flex" : "inline-flex", alignItems: "center", justifyContent: "center", gap: 8, cursor: "pointer",
-    border: 0, textDecoration: "none", whiteSpace: "nowrap",
+    border: 0, textDecoration: "none",
+    // Rotulo longo ("Agendar Tomografia Computadorizada") quebra em vez de
+    // estourar a largura da tela no celular.
+    whiteSpace: "normal", textAlign: "center", maxWidth: "100%",
     transition: "background var(--dur-fast), color var(--dur-fast), transform var(--dur-fast), box-shadow var(--dur-base)",
     width: fullWidth ? "100%" : undefined,
   };

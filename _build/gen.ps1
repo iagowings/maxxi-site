@@ -3,6 +3,9 @@
 $ErrorActionPreference = "Stop"
 $root = Split-Path $PSScriptRoot -Parent
 $utf8 = New-Object System.Text.UTF8Encoding($false)
+# Query de versao: obriga o navegador a buscar CSS/JSX novos apos cada build,
+# em vez de servir a copia antiga do cache ate ela expirar.
+$ver = Get-Date -Format "yyyyMMddHHmm"
 
 $json = [System.IO.File]::ReadAllText((Join-Path $PSScriptRoot "pages.json"), [System.Text.Encoding]::UTF8)
 $pages = $json | ConvertFrom-Json
@@ -28,8 +31,8 @@ $tpl = @'
 <link rel="preconnect" href="https://unpkg.com" crossorigin/>
 <link rel="preconnect" href="https://connect.facebook.net"/>
 <link rel="icon" type="image/png" href="/assets/logo-mark.png"/>
-<link rel="stylesheet" href="/colors_and_type.css"/>
-<link rel="stylesheet" href="/styles.css"/>
+<link rel="stylesheet" href="/colors_and_type.css?v=@@V@@"/>
+<link rel="stylesheet" href="/styles.css?v=@@V@@"/>
 
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
@@ -48,13 +51,13 @@ $tpl = @'
 </div>
 </noscript>
 @@INLINE@@
-<script type="text/babel" src="/shared/primitives.jsx"></script>
-<script type="text/babel" src="/shared/data.jsx"></script>
-<script type="text/babel" src="/shared/tweaks.jsx"></script>
-<script type="text/babel" src="/shared/SpecialtyCard.jsx"></script>
-<script type="text/babel" src="/shared/site.jsx"></script>
-<script type="text/babel" src="@@PAGE@@"></script>
-<script src="/shared/consent.js" defer></script>
+<script type="text/babel" src="/shared/primitives.jsx?v=@@V@@"></script>
+<script type="text/babel" src="/shared/data.jsx?v=@@V@@"></script>
+<script type="text/babel" src="/shared/tweaks.jsx?v=@@V@@"></script>
+<script type="text/babel" src="/shared/SpecialtyCard.jsx?v=@@V@@"></script>
+<script type="text/babel" src="/shared/site.jsx?v=@@V@@"></script>
+<script type="text/babel" src="@@PAGE@@?v=@@V@@"></script>
+<script src="/shared/consent.js?v=@@V@@" defer></script>
 </body>
 </html>
 '@
@@ -74,7 +77,7 @@ foreach ($p in $pages) {
   $inline = ""
   if (-not [string]::IsNullOrEmpty($p.inline)) { $inline = $p.inline }
 
-  $html = $tpl.Replace("@@TITLE@@", $p.title).Replace("@@DESC@@", $p.desc).Replace("@@CANON@@", $canon).Replace("@@INLINE@@", $inline).Replace("@@PAGE@@", $p.page)
+  $html = $tpl.Replace("@@TITLE@@", $p.title).Replace("@@DESC@@", $p.desc).Replace("@@CANON@@", $canon).Replace("@@INLINE@@", $inline).Replace("@@PAGE@@", $p.page).Replace("@@V@@", $ver)
 
   $out = Join-Path $dir "index.html"
   [System.IO.File]::WriteAllText($out, $html, $utf8)

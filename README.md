@@ -26,6 +26,7 @@ novo-site/
 ├── contato/index.html               ← /contato/
 ├── termos-e-condicoes/index.html    ← /termos-e-condicoes/
 ├── politica-de-cookies-br/index.html← /politica-de-cookies-br/
+├── politica-de-privacidade/index.html ← /politica-de-privacidade/  (LGPD)
 │
 ├── sitemap.xml · robots.txt         ← SEO
 ├── _redirects · .htaccess           ← redirects 301 (Netlify/Cloudflare · Apache)
@@ -37,7 +38,8 @@ novo-site/
 │
 ├── shared/                          ← Componentes React compartilhados
 │   ├── primitives.jsx               ← Icon, Button, Badge, Card, Field, etc.
-│   ├── data.jsx                     ← SPECIALTIES, EQUIPMENT, EXAMES, CONVENIOS, FAQ
+│   ├── data.jsx                     ← SPECIALTIES, EQUIPMENT, EXAMES, CONVENIOS, FAQ, SOCIAL
+│   ├── consent.js                   ← aviso de cookies (LGPD) + Meta Pixel (cole o ID no topo)
 │   ├── tweaks.jsx                   ← Painel de customização
 │   ├── SpecialtyCard.jsx            ← Cards de especialidade
 │   └── site.jsx                     ← Header, Footer, WhatsApp Bubble, PageShell

@@ -15,16 +15,28 @@
 <meta property="og:url" content="https://www.maxxisaude.com/"/>
 <meta property="og:image" content="https://www.maxxisaude.com/assets/logo-primary.png"/>
 <meta name="twitter:card" content="summary"/>
+<link rel="preconnect" href="https://unpkg.com" crossorigin/>
+<link rel="preconnect" href="https://connect.facebook.net"/>
 <link rel="icon" type="image/png" href="/assets/logo-mark.png"/>
 <link rel="stylesheet" href="/colors_and_type.css"/>
 <link rel="stylesheet" href="/styles.css"/>
 
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 </head>
 <body>
 <div id="root"></div>
+<noscript>
+<div style="max-width:640px;margin:0 auto;padding:40px 20px;font-family:system-ui,sans-serif;line-height:1.6">
+<h1>Maxxi Sa&uacute;de &middot; Altamira/PA</h1>
+<p>Diagn&oacute;stico por imagem e an&aacute;lises cl&iacute;nicas. Tomografia de 128 canais, resson&aacute;ncia magn&eacute;tica, mamografia digital, ultrassonografia, raio-X com plant&atilde;o 24h e laborat&oacute;rio.</p>
+<p>Tv. Coronel Tancredo, 45 &middot; Centro &middot; Altamira/PA &middot; Seg&ndash;S&aacute;b, 7h &agrave;s 19h</p>
+<p>WhatsApp: <a href="https://wa.me/5593991801155">(93) 99180-1155</a> &middot; Telefone: (93) 3515-1122</p>
+<p>Este site precisa de JavaScript. Ative-o no navegador para ver todo o conte&uacute;do.</p>
+<p>CNPJ 11.503.226/0001-21 &middot; Respons&aacute;vel t&eacute;cnico: Dr. An&iacute;sio Fernando Chaves &middot; CRM 9422 &middot; R.Q.E. 6391</p>
+</div>
+</noscript>
 
 <script type="text/babel" src="/shared/primitives.jsx"></script>
 <script type="text/babel" src="/shared/data.jsx"></script>
@@ -32,5 +44,6 @@
 <script type="text/babel" src="/shared/SpecialtyCard.jsx"></script>
 <script type="text/babel" src="/shared/site.jsx"></script>
 <script type="text/babel" src="/pages/home.jsx"></script>
+<script src="/shared/consent.js" defer></script>
 </body>
 </html>

@@ -15,6 +15,13 @@ const PHONE_FIXED_TEL     = "+5593935151122";  // Telefone fixo — formato tel:
 // (WhatsApp bubble, contact page channel cards, header phone).
 const GENERAL_WHATS = IA_WHATS;
 
+/* Perfis oficiais. Deixe em branco para o ícone não aparecer no rodapé —
+   link quebrado ("#") conta como página de destino ruim no Meta Ads. */
+const SOCIAL = {
+  instagram: "",
+  facebook: "",
+};
+
 const SPECIALTIES = [
   {
     slug: "ginecologia",
@@ -178,7 +185,7 @@ const EQUIPMENT = [
     name: "Tomografia Computadorizada 128 Canais",
     short: "Tomografia 128",
     badge: "Única na cidade",
-    summary: "O primeiro equipamento de 128 canais instalado em uma clínica privada da região Norte. Imagens com altíssima definição, exames em segundos, menor dose de radiação e diagnóstico mais preciso para você.",
+    summary: "O primeiro equipamento de 128 canais instalado em uma clínica privada da região Norte. Imagens de alta definição, exames em segundos e menor dose de radiação — mais informação para o médico que acompanha o seu caso.",
     bullets: [
       "Aquisição em até 0,33 s por rotação",
       "Reconstruções 3D de alta resolução para cardio, vascular e neuro",
@@ -347,7 +354,7 @@ const FAQ = [
 ];
 
 Object.assign(window, {
-  SPECIALTIES, CATEGORIES, EQUIPMENT, EXAMES, CONVENIOS, FAQ,
+  SPECIALTIES, CATEGORIES, EQUIPMENT, EXAMES, CONVENIOS, FAQ, SOCIAL,
   GENERAL_WHATS, RECEPCAO_WHATS, IA_WHATS, PLANTAO_WHATS,
   PHONE_FIXED, PHONE_FIXED_TEL,
 });

@@ -121,8 +121,12 @@ function Footer() {
             Atendimento humanizado, há mais de 10 anos cuidando do Xingu.
           </p>
           <div style={{ display: "flex", gap: 12, marginTop: 24 }}>
-            <a href="#" aria-label="Instagram" style={socialIconStyle()}><Icon name="instagram" size={18}/></a>
-            <a href="#" aria-label="Facebook" style={socialIconStyle()}><Icon name="facebook" size={18}/></a>
+            {SOCIAL.instagram && (
+              <a href={SOCIAL.instagram} target="_blank" rel="noopener" aria-label="Instagram" style={socialIconStyle()}><Icon name="instagram" size={18}/></a>
+            )}
+            {SOCIAL.facebook && (
+              <a href={SOCIAL.facebook} target="_blank" rel="noopener" aria-label="Facebook" style={socialIconStyle()}><Icon name="facebook" size={18}/></a>
+            )}
             <a href={"https://wa.me/" + GENERAL_WHATS} target="_blank" rel="noopener" aria-label="WhatsApp"
                style={{ width: 38, height: 38, display: "inline-flex", alignItems: "center", justifyContent: "center", textDecoration: "none" }}>
               <WhatsAppMark size={38} alt="WhatsApp"/>
@@ -179,6 +183,24 @@ function Footer() {
       }}>
         <div>© {new Date().getFullYear()} Maxxi Saúde · Diagnóstico por Imagem e Análises Clínicas · CNPJ 11.503.226/0001-21</div>
         <div>Responsável técnico: Dr. Anísio Fernando Chaves · Médico Radiologista · CRM 9422 · R.Q.E. 6391</div>
+      </div>
+
+      <div className="container" style={{
+        marginTop: 16, display: "flex", gap: 18, flexWrap: "wrap",
+        fontSize: 12, color: "rgba(255,255,255,0.55)",
+      }}>
+        {[
+          ["/politica-de-privacidade/", "Política de Privacidade"],
+          ["/politica-de-cookies-br/", "Política de Cookies"],
+          ["/termos-e-condicoes/", "Termos e Condições"],
+        ].map(([href, label]) => (
+          <a key={href} href={href} style={{ color: "rgba(255,255,255,0.72)", textDecoration: "underline" }}>{label}</a>
+        ))}
+        <span style={{ flexBasis: "100%", lineHeight: 1.5, marginTop: 8, color: "rgba(255,255,255,0.45)" }}>
+          O conteúdo deste site é informativo e não substitui consulta, diagnóstico ou
+          tratamento médico. Exames são realizados mediante solicitação médica e os
+          resultados variam de paciente para paciente.
+        </span>
       </div>
 
       <style>{`

@@ -34,9 +34,14 @@ function TecnologiaPage() {
               <div style={{ display: "flex", gap: 36, flexWrap: "wrap" }}>
                 <BigStat n="128" label="canais"/>
                 <BigStat n="0,33s" label="por rotação"/>
-                <BigStat n="−40%" label="dose de radiação"/>
+                <BigStat n="até −40%" label="dose de radiação*"/>
                 <BigStat n="24h" label="plantão"/>
               </div>
+              <p style={{ fontSize: 11.5, color: "rgba(255,255,255,0.55)", lineHeight: 1.5, margin: "18px 0 0", maxWidth: 520 }}>
+                *Redução de dose em comparação com protocolos convencionais de tomografia,
+                conforme especificações técnicas do fabricante. O protocolo de cada exame é
+                definido pelo médico responsável e varia conforme a região examinada e o paciente.
+              </p>
             </div>
             <div style={{ position: "relative", aspectRatio: "1/1" }}>
               <ScannerArt/>
@@ -69,17 +74,17 @@ function TecnologiaPage() {
                 {
                   icon: "shield-check",
                   title: "Menor dose de radiação",
-                  body: "Algoritmos iterativos reduzem em até 40% a dose entregue ao paciente — especialmente importante em crianças e exames de acompanhamento."
+                  body: "Algoritmos iterativos permitem reduzir a dose entregue ao paciente frente a protocolos convencionais — um cuidado a mais em crianças e exames de acompanhamento."
                 },
                 {
                   icon: "activity",
                   title: "Reconstrução 3D",
-                  body: "Cortes finos e reconstruções tridimensionais para estudos cardíacos, vasculares, ortopédicos e neurológicos com altíssima precisão."
+                  body: "Cortes finos e reconstruções tridimensionais para estudos cardíacos, vasculares, ortopédicos e neurológicos, conforme o protocolo indicado pelo médico."
                 },
                 {
                   icon: "heart-pulse",
                   title: "Angiotomografia",
-                  body: "Avaliação detalhada de artérias coronárias e grandes vasos sem necessidade de cateterismo diagnóstico em muitos casos."
+                  body: "Avaliação detalhada de artérias coronárias e grandes vasos com contraste, quando indicada pelo seu médico."
                 },
                 {
                   icon: "users",
@@ -137,6 +142,17 @@ function TecnologiaPage() {
                 <Button variant="outline" size="lg" href="/contato/">Ver localização e horários</Button>
               </div>
             </Card>
+
+            <p style={{ fontSize: 12.5, color: "var(--fg-muted)", lineHeight: 1.6, margin: "24px auto 0", maxWidth: 720, textAlign: "center" }}>
+              Aviso: esta página tem caráter informativo e não substitui consulta, diagnóstico
+              ou tratamento médico. A tomografia é um exame realizado mediante solicitação
+              médica, utiliza radiação ionizante e pode exigir preparo e uso de contraste —
+              a indicação, o protocolo e a interpretação são responsabilidade do médico
+              assistente. Resultados variam de paciente para paciente.
+              <br/>
+              Maxxi Saúde · CNPJ 11.503.226/0001-21 · Responsável técnico: Dr. Anísio Fernando
+              Chaves · Médico Radiologista · CRM 9422 · R.Q.E. 6391
+            </p>
           </div>
         </section>
 
@@ -232,8 +248,8 @@ function EquipmentRow({ eq, flip }) {
           <Icon name={eq.icon} size={120} stroke={1.2}/>
         </div>
         <div style={{ position: "absolute", left: 16, bottom: 16, background: "rgba(255,255,255,0.95)", padding: "8px 14px", borderRadius: 999, fontSize: 12, fontWeight: 700, color: "var(--ms-blue-700)" }}>
-          <Icon name="image" size={12} style={{ verticalAlign: "-2px", marginRight: 6 }}/>
-          Foto do equipamento
+          <Icon name={eq.icon} size={12} style={{ verticalAlign: "-2px", marginRight: 6 }}/>
+          {eq.short}
         </div>
       </div>
     </div>

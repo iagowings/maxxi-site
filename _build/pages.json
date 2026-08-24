@@ -83,6 +83,13 @@
     "desc": "Saiba como o site da Maxxi Saúde utiliza cookies e trata seus dados conforme a LGPD.",
     "inline": "<script>window.LEGAL_KEY=\"politica-de-cookies-br\";</script>"
   },
+  {
+    "folder": "politica-de-privacidade",
+    "page": "/pages/legal.jsx",
+    "title": "Política de Privacidade — Maxxi Saúde",
+    "desc": "Como a Maxxi Saúde coleta, usa e protege seus dados pessoais, conforme a LGPD (Lei nº 13.709/2018).",
+    "inline": "<script>window.LEGAL_KEY=\"politica-de-privacidade\";</script>"
+  },
 
   {
     "folder": "exames/tomografia-computadorizada",

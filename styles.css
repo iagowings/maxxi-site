@@ -10,6 +10,36 @@ img { max-width: 100%; }
 /* Palavra unica maior que a tela (ex.: "Computadorizada" a 320px) quebra
    em vez de esticar a pagina. */
 h1, h2, h3, h4 { overflow-wrap: break-word; }
+
+/* Cor do texto sobre o verde da marca. O branco sobre esse verde da 1.9:1
+   e reprova em acessibilidade; a tinta escura da 7.4:1. Quando o painel de
+   tweaks troca o protagonista para azul, o branco volta a ser o certo. */
+:root { --on-accent: #08301a; --on-green: #08301a; }
+[data-accent="blue"] { --on-accent: #fff; }
+
+/* ---- Barra de acessibilidade (topo de todas as paginas) ---- */
+.acess-bar { background: var(--ms-blue-50); border-bottom: 1px solid var(--ms-blue-100); }
+.acess-row { display: flex; gap: 10px; padding-top: 10px; padding-bottom: 10px; }
+.acess-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  cursor: pointer; font-family: inherit; font-size: 15px; font-weight: 800; line-height: 1.15;
+  color: var(--ms-blue-700); background: #fff;
+  border: 2px solid var(--ms-blue-200); border-radius: 999px;
+  padding: 10px 18px; min-height: 48px;
+}
+.acess-btn[aria-pressed="true"] { background: var(--ms-blue-700); border-color: var(--ms-blue-700); color: #fff; }
+.acess-aa { font-size: 20px; font-weight: 900; line-height: 1; }
+@media (max-width: 600px) {
+  .acess-btn { flex: 1 1 0; min-width: 0; padding: 10px 12px; font-size: 14px; }
+}
+
+/* "Letra maior": zoom reflui o layout de verdade, ao contrario de transform.
+   Fica no <main> para nao ampliar o menu fixo do topo. */
+html[data-letra="grande"] main { zoom: 1.25; }
+
+/* Alvo de toque minimo em listas de links (rodape, menu do celular) */
+footer a, .nav-mobile-drawer a { display: inline-block; padding-top: 6px; padding-bottom: 6px; }
+
 html { scroll-behavior: smooth; }
 body { margin: 0; }
 
@@ -90,7 +120,7 @@ section { position: relative; }
 .specialty-grid {
   display: grid;
   gap: var(--grid-gap, 20px);
-  grid-template-columns: repeat(auto-fill, minmax(var(--grid-min, 280px), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(var(--grid-min, 280px), 100%), 1fr));
 }
 
 /* Page-section spacing */

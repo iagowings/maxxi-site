@@ -13,8 +13,6 @@
    - Alvos de toque grandes (>= 60px) e contraste AA em tudo.
    ============================================================= */
 
-const { useState: useStateT, useEffect: useEffectT, useRef: useRefT } = React;
-
 const WA_LINK = "https://wa.me/" + RECEPCAO_WHATS + "?text=" +
   encodeURIComponent("Olá! Quero fazer uma tomografia.");
 
@@ -45,27 +43,18 @@ const FALA = [
   "Qualquer dúvida, é só chamar no WhatsApp. A gente responde.",
 ];
 
+/* A barra de acessibilidade agora é do site inteiro (shared/acessibilidade.jsx).
+   Esta página entrega um roteiro escrito à mão em vez do texto extraído. */
+window.ROTEIRO_FALA = FALA;
+
 function TecnologiaPage() {
-  const [grande, setGrande] = useStateT(false);
-
-  useEffectT(() => {
-    try { setGrande(localStorage.getItem("maxxi-letra-grande") === "1"); } catch (e) {}
-  }, []);
-  const alternarLetra = () => {
-    setGrande(v => {
-      try { localStorage.setItem("maxxi-letra-grande", v ? "0" : "1"); } catch (e) {}
-      return !v;
-    });
-  };
-
   return (
     <PageShell active="tecnologia" hideBubble>
-      <div data-screen-label="Tomografia" className="t-page" style={{ "--ts": grande ? 1.3 : 1 }}>
+      <div data-screen-label="Tomografia" className="t-page">
 
         {/* ---------- 1. Topo: o que é e o botão ---------- */}
         <section style={{ background: "var(--ms-blue-800)", color: "#fff", padding: "44px 0 52px" }}>
           <div className="container">
-            <BarraAcessibilidade grande={grande} onLetra={alternarLetra}/>
             <p className="t-eyebrow">Maxxi Saúde · Altamira</p>
             <h1 className="t-h1">Tomografia<br/>em Altamira</h1>
             <p className="t-lead">
@@ -254,61 +243,6 @@ function BotaoWhats({ compacto }) {
   );
 }
 
-/* ---------------- Ouvir a página + Letra maior ----------------
-   A leitura usa a voz do próprio navegador (SpeechSynthesis): sem
-   biblioteca, sem arquivo de áudio, sem custo. Se o aparelho não
-   tiver suporte, o botão simplesmente não aparece. */
-function BarraAcessibilidade({ grande, onLetra }) {
-  const [falando, setFalando] = useStateT(false);
-  const [temVoz, setTemVoz] = useStateT(false);
-  const parouSozinho = useRefT(false);
-
-  useEffectT(() => {
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
-    const checar = () => setTemVoz(window.speechSynthesis.getVoices().length > 0);
-    checar();
-    window.speechSynthesis.addEventListener("voiceschanged", checar);
-    return () => {
-      window.speechSynthesis.removeEventListener("voiceschanged", checar);
-      window.speechSynthesis.cancel();
-    };
-  }, []);
-
-  const falar = () => {
-    const ss = window.speechSynthesis;
-    if (falando) { parouSozinho.current = true; ss.cancel(); setFalando(false); return; }
-    ss.cancel();
-    parouSozinho.current = false;
-    const vozes = ss.getVoices();
-    const pt = vozes.find(v => /^pt[-_]BR/i.test(v.lang)) || vozes.find(v => /^pt/i.test(v.lang));
-    FALA.forEach((frase, i) => {
-      const u = new SpeechSynthesisUtterance(frase);
-      u.lang = "pt-BR";
-      if (pt) u.voice = pt;
-      u.rate = 0.92;          // um pouco mais devagar que o padrão
-      if (i === FALA.length - 1) u.onend = () => setFalando(false);
-      u.onerror = () => setFalando(false);
-      ss.speak(u);
-    });
-    setFalando(true);
-  };
-
-  return (
-    <div className="t-acess">
-      {temVoz && (
-        <button type="button" onClick={falar} className="t-acess-btn" aria-pressed={falando}>
-          <Icon name={falando ? "stop" : "volume"} size={28} stroke={2.2}/>
-          <span>{falando ? "Parar a leitura" : "Ouvir esta página"}</span>
-        </button>
-      )}
-      <button type="button" onClick={onLetra} className="t-acess-btn" aria-pressed={grande}>
-        <span className="t-acess-aa" aria-hidden="true">A</span>
-        <span>{grande ? "Letra normal" : "Letra maior"}</span>
-      </button>
-    </div>
-  );
-}
-
 /* ---------------- Estilos da página ----------------
    Tudo em calc(px * var(--ts)) para o botão "Letra maior" escalar a
    página inteira. Os !important existem porque styles.css força
@@ -316,12 +250,7 @@ function BarraAcessibilidade({ grande, onLetra }) {
 function EstiloDaPagina() {
   return (
     <style>{`
-      .t-page { --verde: #25d366; --verde-esc: #0b6b30; --tinta: #08301a; }
-
-      /* Texto branco sobre o verde claro da marca da 1.9:1 — reprova em
-         acessibilidade. Nesta pagina o rotulo vai em tinta escura (7.4:1).
-         Vale para o botao "Agendar" do topo, que fica fora da .t-page. */
-      .btn.btn-primary { color: #08301a !important; }
+      .t-page { --ts: 1; --verde: #25d366; --verde-esc: #0b6b30; --tinta: #08301a; }
 
       .t-eyebrow {
         font-size: calc(14px * var(--ts)); font-weight: 800; letter-spacing: 0.14em;

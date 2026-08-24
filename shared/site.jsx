@@ -380,7 +380,10 @@ function PageShell({ active, children, hideBubble }) {
   return (
     <>
       <Header active={active}/>
-      <main style={{ paddingTop: 76 }}>{children}</main>
+      <main style={{ paddingTop: 76 }}>
+        <AcessibilidadeBar/>
+        {children}
+      </main>
       <Footer/>
       {!hideBubble && <WhatsAppBubble/>}
     </>

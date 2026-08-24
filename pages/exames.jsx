@@ -20,7 +20,7 @@ function ExamesPage() {
 
         <section className="section-pad-sm">
           <div className="container">
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 20 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(300px, 100%), 1fr))", gap: 20 }}>
               {EXAMES.map((e) => (
                 <Card key={e.slug} className="reveal" hoverable style={{ padding: 28, display: "flex", flexDirection: "column", minHeight: 240 }}>
                   {e.badge && <div style={{ marginBottom: 14 }}><Badge variant="solid-blue" icon="sparkle">{e.badge}</Badge></div>}

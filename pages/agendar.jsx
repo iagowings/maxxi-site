@@ -25,7 +25,7 @@ function AgendarPage() {
         <section className="section-pad-sm">
           <div className="container">
             <h2 style={{ fontSize: 28, fontWeight: 800, color: "var(--fg-strong)", letterSpacing: "-0.02em", margin: "0 0 24px" }}>Agendar por especialidade</h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 16 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(260px, 100%), 1fr))", gap: 16 }}>
               {SPECIALTIES.map((s) => (
                 <Card key={s.slug} className="reveal" hoverable style={{ padding: "20px 22px", display: "flex", alignItems: "center", gap: 14 }}>
                   <IconCircle name={s.icon} color="accent" size={44} stroke={1.6}/>
@@ -44,7 +44,7 @@ function AgendarPage() {
             </div>
 
             <h2 style={{ fontSize: 28, fontWeight: 800, color: "var(--fg-strong)", letterSpacing: "-0.02em", margin: "48px 0 24px" }}>Agendar exames de imagem e laboratório</h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 16 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(260px, 100%), 1fr))", gap: 16 }}>
               {EXAMES.map((e) => (
                 <Card key={e.slug} className="reveal" hoverable style={{ padding: "20px 22px", display: "flex", alignItems: "center", gap: 14 }}>
                   <IconCircle name={e.icon} color="blue" size={44} stroke={1.6}/>

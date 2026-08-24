@@ -1,6 +1,13 @@
 /* global React, Icon, Button, Badge, IconCircle, SectionTitle, Eyebrow, Card, FAQ, GENERAL_WHATS */
 const { useState: useStateFAQ } = React;
 
+/* As respostas ficam fechadas no acordeão, então a leitura em voz alta
+   não as alcançaria. Aqui o roteiro é montado com pergunta e resposta. */
+window.ROTEIRO_FALA = ["Dúvidas frequentes da Maxxi Saúde."].concat(
+  FAQ.flatMap(item => [item.q].concat(item.a.match(/[^.!?]+[.!?]*/g) || []))
+     .map(t => t.trim()).filter(Boolean)
+);
+
 function FaqPage() {
   return (
     <PageShell active="faq">

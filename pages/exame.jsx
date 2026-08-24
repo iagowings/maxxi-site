@@ -69,7 +69,7 @@ function ExamePage() {
         <section className="section-pad-sm" style={{ background: "var(--bg-subtle, #f7f9fb)" }}>
           <div className="container" style={{ maxWidth: 880 }}>
             <h2 style={{ fontSize: 24, fontWeight: 800, color: "var(--fg-strong)", letterSpacing: "-0.02em", margin: "0 0 24px" }}>Outros exames</h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 16 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(240px, 100%), 1fr))", gap: 16 }}>
               {related.map((e) => (
                 <a key={e.slug} href={"/exames/" + e.slug + "/"} style={{ textDecoration: "none" }}>
                   <Card hoverable style={{ padding: "20px 22px", display: "flex", alignItems: "center", gap: 14 }}>

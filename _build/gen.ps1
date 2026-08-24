@@ -55,6 +55,7 @@ $tpl = @'
 <script type="text/babel" src="/shared/data.jsx?v=@@V@@"></script>
 <script type="text/babel" src="/shared/tweaks.jsx?v=@@V@@"></script>
 <script type="text/babel" src="/shared/SpecialtyCard.jsx?v=@@V@@"></script>
+<script type="text/babel" src="/shared/acessibilidade.jsx?v=@@V@@"></script>
 <script type="text/babel" src="/shared/site.jsx?v=@@V@@"></script>
 <script type="text/babel" src="@@PAGE@@?v=@@V@@"></script>
 <script src="/shared/consent.js?v=@@V@@" defer></script>

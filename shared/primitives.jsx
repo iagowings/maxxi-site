@@ -100,12 +100,12 @@ function Button({ children, variant = "primary", size = "md", icon, iconAfter, o
     lg: { fontSize: 17, padding: "18px 28px", minHeight: 56 },
   };
   const variants = {
-    primary:   { background: "var(--site-accent-500)", color: "#fff", boxShadow: "var(--site-accent-glow)" },
+    primary:   { background: "var(--site-accent-500)", color: "var(--on-accent)", boxShadow: "var(--site-accent-glow)" },
     secondary: { background: "var(--ms-blue-500)", color: "#fff", boxShadow: "var(--sh-brand-glow)" },
     outline:   { background: "transparent", color: "var(--ms-blue-700)", border: "2px solid var(--ms-blue-200)" },
     ghost:     { background: "transparent", color: "var(--ms-blue-700)" },
     onbrand:   { background: "#fff", color: "var(--ms-blue-700)" },
-    whatsapp:  { background: "#25D366", color: "#fff", boxShadow: "0 8px 24px rgba(37,211,102,0.32)" },
+    whatsapp:  { background: "#25D366", color: "var(--on-green)", boxShadow: "0 8px 24px rgba(37,211,102,0.32)" },
   };
   const style = { ...base, ...sizes[size], ...variants[variant], ...extra };
   const Comp = href ? "a" : "button";
@@ -125,7 +125,7 @@ function IconCircle({ name, color = "accent", size = 48, stroke = 1.75 }) {
     green:  { bg: "var(--ms-green-100)",    fg: "var(--ms-green-700)" },
     blue:   { bg: "var(--ms-blue-100)",     fg: "var(--ms-blue-600)" },
     "blue-solid": { bg: "var(--ms-blue-500)", fg: "#fff" },
-    "accent-solid": { bg: "var(--site-accent-500)", fg: "#fff" },
+    "accent-solid": { bg: "var(--site-accent-500)", fg: "var(--on-accent)" },
     white:  { bg: "rgba(255,255,255,0.18)",  fg: "#fff" },
   };
   const { bg, fg } = palette[color] || palette.accent;
@@ -143,9 +143,9 @@ function Badge({ children, variant = "soft-accent", icon }) {
     "soft-accent": { background: "var(--site-accent-100)", color: "var(--site-accent-800)" },
     "soft-green":  { background: "var(--ms-green-100)", color: "var(--ms-green-800)" },
     "soft-blue":   { background: "var(--ms-blue-100)",  color: "var(--ms-blue-700)" },
-    "solid-green": { background: "var(--ms-green-500)", color: "#fff" },
+    "solid-green": { background: "var(--ms-green-500)", color: "var(--on-green)" },
     "solid-blue":  { background: "var(--ms-blue-500)",  color: "#fff" },
-    "solid-accent":{ background: "var(--site-accent-500)", color: "#fff" },
+    "solid-accent":{ background: "var(--site-accent-500)", color: "var(--on-accent)" },
     "outline":     { background: "transparent", color: "var(--ms-blue-700)", border: "1.5px solid var(--ms-blue-200)" },
     "warning":     { background: "#FFF1D6", color: "#8A5A0A" },
     "danger":      { background: "#FDE4E4", color: "#7A2727" },

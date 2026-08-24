@@ -19,7 +19,7 @@ function ConveniosPage() {
 
         <section className="section-pad-sm">
           <div className="container">
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: 16 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(220px, 100%), 1fr))", gap: 16 }}>
               {CONVENIOS.map((c) => (
                 <Card key={c} className="reveal" style={{ padding: "22px 24px", display: "flex", alignItems: "center", gap: 14 }}>
                   <IconCircle name="shield-check" color="blue" size={42} stroke={1.5}/>

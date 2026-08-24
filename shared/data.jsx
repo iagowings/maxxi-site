@@ -9,11 +9,12 @@ const PLANTAO_WHATS  = "5593991071980";   // WhatsApp do Plantão 24h — emerg�
 const PHONE_FIXED         = "(93) 3515-1122";  // Telefone fixo — exibição
 const PHONE_FIXED_TEL     = "+5593935151122";  // Telefone fixo — formato tel:
 
-// Default WhatsApp used across the site (header, footer, CTAs, agendamento) — IA.
-// First contact goes through IA: instant reply 24h, triage, then hands off to Recepção.
-// The Recepção and Plantão channels are still used explicitly where they belong
-// (WhatsApp bubble, contact page channel cards, header phone).
-const GENERAL_WHATS = IA_WHATS;
+// Default WhatsApp used across the site (header, footer, CTAs, agendamento).
+// Todo CTA cai na Recepção — decisão para as campanhas de anúncios: um único
+// canal atendido por gente, sem triagem automática no meio do caminho.
+// IA e Plantão seguem listados onde são explicitamente oferecidos
+// (bolha do WhatsApp e cards de canais da página de Contato).
+const GENERAL_WHATS = RECEPCAO_WHATS;
 
 /* Perfis oficiais. Deixe em branco para o ícone não aparecer no rodapé —
    link quebrado ("#") conta como página de destino ruim no Meta Ads. */

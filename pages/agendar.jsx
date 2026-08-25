@@ -8,23 +8,23 @@ function AgendarPage() {
           <div className="container" style={{ maxWidth: 880 }}>
             <Eyebrow>Agendamento</Eyebrow>
             <h1 style={{ fontSize: 56, fontWeight: 900, color: "var(--fg-strong)", letterSpacing: "-0.035em", lineHeight: 1.06, margin: "8px 0 18px" }}>
-              Agende seu exame ou consulta
+              Marcar exame ou consulta
             </h1>
             <p style={{ fontSize: 19, color: "var(--fg-default)", lineHeight: 1.55, maxWidth: 720, margin: 0 }}>
-              Escolha a especialidade e fale direto com a equipe certa pelo WhatsApp.
-              Para exames de imagem e laboratoriais, tenha em mãos o pedido médico.
+              Escolha embaixo o que você precisa e fale direto no WhatsApp. Pode mandar
+              áudio. Se for exame, tenha o pedido do médico por perto — dá para mandar foto.
             </p>
             <div style={{ marginTop: 24 }}>
               <Button variant="primary" size="lg" icon="whatsapp"
-                      href={"https://wa.me/" + GENERAL_WHATS + "?text=" + encodeURIComponent("Olá! Gostaria de agendar um exame ou consulta na Maxxi Saúde.")}
-                      target="_blank">Agendar pelo WhatsApp geral</Button>
+                      href={"https://wa.me/" + GENERAL_WHATS + "?text=" + encodeURIComponent("Olá! Quero marcar uma consulta ou exame.")}
+                      target="_blank">Falar no WhatsApp</Button>
             </div>
           </div>
         </section>
 
         <section className="section-pad-sm">
           <div className="container">
-            <h2 style={{ fontSize: 28, fontWeight: 800, color: "var(--fg-strong)", letterSpacing: "-0.02em", margin: "0 0 24px" }}>Agendar por especialidade</h2>
+            <h2 style={{ fontSize: 28, fontWeight: 800, color: "var(--fg-strong)", letterSpacing: "-0.02em", margin: "0 0 24px" }}>Marcar uma consulta</h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(260px, 100%), 1fr))", gap: 16 }}>
               {SPECIALTIES.map((s) => (
                 <Card key={s.slug} className="reveal" hoverable style={{ padding: "20px 22px", display: "flex", alignItems: "center", gap: 14 }}>
@@ -33,7 +33,7 @@ function AgendarPage() {
                     <div style={{ fontSize: 16, fontWeight: 800, color: "var(--fg-strong)" }}>{s.name}</div>
                     {s.doctor && <div style={{ fontSize: 13, color: "var(--fg-muted)" }}>{s.doctor.name}</div>}
                   </div>
-                  <a href={"https://wa.me/" + s.whatsapp + "?text=" + encodeURIComponent("Olá! Gostaria de agendar " + s.name + " na Maxxi Saúde.")}
+                  <a href={"https://wa.me/" + s.whatsapp + "?text=" + encodeURIComponent("Olá! Quero marcar uma consulta de " + s.name + ".")}
                      target="_blank" rel="noopener"
                      aria-label={"Agendar " + s.name}
                      style={{ color: "var(--ms-green-700)", display: "inline-flex" }}>
@@ -51,7 +51,7 @@ function AgendarPage() {
                   <div style={{ flex: 1 }}>
                     <a href={"/exames/" + e.slug + "/"} style={{ fontSize: 16, fontWeight: 800, color: "var(--fg-strong)", textDecoration: "none" }}>{e.name}</a>
                   </div>
-                  <a href={"https://wa.me/" + GENERAL_WHATS + "?text=" + encodeURIComponent("Olá! Gostaria de agendar " + e.name + " na Maxxi Saúde.")}
+                  <a href={"https://wa.me/" + GENERAL_WHATS + "?text=" + encodeURIComponent("Olá! Quero marcar " + e.name + ".")}
                      target="_blank" rel="noopener"
                      aria-label={"Agendar " + e.name}
                      style={{ color: "var(--ms-green-700)", display: "inline-flex" }}>

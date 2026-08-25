@@ -13,14 +13,14 @@ function SobrePage() {
                 cuidando do Xingu.
               </h1>
               <p style={{ fontSize: 19, color: "var(--fg-default)", lineHeight: 1.6, maxWidth: 560, margin: "0 0 18px" }}>
-                A Maxxi Saúde nasceu em 2014, em Altamira, com um sonho do Dr. Anísio
-                Fernando Chaves: aproximar o diagnóstico por imagem de qualidade dos
-                moradores da região do Xingu, sem que precisassem viajar para Belém.
+                A Maxxi Saúde abriu as portas em 2014, em Altamira. A ideia do Dr. Anísio
+                Fernando Chaves era simples: quem mora aqui no Xingu não deveria precisar
+                pegar estrada até Belém para fazer um exame.
               </p>
               <p style={{ fontSize: 19, color: "var(--fg-default)", lineHeight: 1.6, maxWidth: 560, margin: 0 }}>
-                Hoje, somos referência regional em tomografia, ressonância, análises
-                clínicas e mais de uma dezena de especialidades — sempre com
-                <strong style={{ color: "var(--ms-blue-700)" }}> atendimento humanizado</strong> como prioridade.
+                Hoje a gente faz tomografia, ressonância, exame de sangue e atende em mais
+                de dez especialidades. E continua com a mesma regra:
+                <strong style={{ color: "var(--ms-blue-700)" }}> tratar cada pessoa com calma e atenção</strong>.
               </p>
             </div>
             <div style={{ position: "relative" }}>
@@ -47,23 +47,23 @@ function SobrePage() {
         {/* Pillars */}
         <section className="section-pad">
           <div className="container">
-            <SectionTitle eyebrow="O que nos guia" title="Três compromissos com quem nos procura." align="center"/>
+            <SectionTitle eyebrow="O que nos guia" title="Três promessas nossas com você." align="center"/>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }} id="pillar-grid">
               {[
                 {
                   icon: "heart",
-                  title: "Atendimento humanizado",
-                  body: "Tempo para ouvir, explicar e cuidar. Você é uma pessoa, não um número de protocolo."
+                  title: "A gente escuta você",
+                  body: "Tempo para ouvir, explicar e cuidar. Aqui você é uma pessoa, não uma senha na fila."
                 },
                 {
                   icon: "scan-line",
-                  title: "Tecnologia de capital",
-                  body: "Equipamentos modernos como a Tomografia de 128 canais — antes só disponível em grandes centros."
+                  title: "Aparelhos modernos",
+                  body: "Como a tomografia de 128 canais, que antes só existia em cidade grande. Agora está aqui."
                 },
                 {
                   icon: "shield-check",
-                  title: "Responsabilidade técnica",
-                  body: "Médicos especialistas, laudos por profissionais certificados e plantão 24h para urgências."
+                  title: "Médico especialista sempre",
+                  body: "Quem lê o seu exame é um médico especialista. E tem plantão 24 horas para urgência."
                 },
               ].map(p => (
                 <Card key={p.title} padding={28} hoverable style={{ textAlign: "center" }}>
@@ -82,15 +82,15 @@ function SobrePage() {
         {/* Timeline */}
         <section className="section-pad" style={{ background: "var(--ms-off-white)", borderTop: "1px solid var(--border-subtle)" }}>
           <div className="container">
-            <SectionTitle eyebrow="Linha do tempo" title="Uma história contada em conquistas." />
+            <SectionTitle eyebrow="Linha do tempo" title="A nossa história, ano a ano." />
             <div style={{ position: "relative", paddingLeft: 32 }}>
               <div style={{ position: "absolute", left: 11, top: 8, bottom: 8, width: 2, background: "var(--site-accent-200)" }}/>
               {[
                 ["2014", "Fundação", "O radiologista Dr. Anísio Fernando Chaves abre as portas da Maxxi Saúde em Altamira."],
                 ["2017", "Plantão 24h", "Inauguração do plantão 24 horas de tomografia e raio-x para atender urgências."],
-                ["2020", "Análises clínicas", "Ampliação do laboratório próprio, integrando exames de imagem e análises clínicas no mesmo lugar."],
-                ["2024", "10 anos & nova era", "Comemoração da primeira década e chegada da Tomografia de 128 canais — única na cidade em clínica privada da região."],
-                ["Hoje", "12 especialidades", "Equipe ampliada com novas especialidades como Mastologia, Psiquiatria, Neurologia e mais."],
+                ["2020", "Análises clínicas", "O laboratório cresceu: exame de imagem e exame de sangue passaram a ser no mesmo lugar."],
+                ["2024", "10 anos & nova era", "Dez anos de clínica e a chegada da tomografia de 128 canais, a única em clínica particular da região."],
+                ["Hoje", "12 especialidades", "A equipe cresceu: chegaram mastologia, psiquiatria, neurologia e outras especialidades."],
               ].map(([year, title, body], i) => (
                 <div key={year} style={{ position: "relative", paddingBottom: i < 4 ? 36 : 0 }}>
                   <div style={{
@@ -130,9 +130,9 @@ function SobrePage() {
                 <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--ms-blue-600)" }}>Responsável técnico</div>
                 <h3 style={{ fontSize: 30, fontWeight: 800, color: "var(--fg-strong)", letterSpacing: "-0.02em", margin: "6px 0 10px" }}>Dr. Anísio Fernando Chaves</h3>
                 <p style={{ fontSize: 16, color: "var(--fg-default)", lineHeight: 1.55, margin: 0 }}>
-                  Médico radiologista, fundador e diretor técnico da Maxxi Saúde.
-                  Apaixonado pelo Xingu, dedicou a carreira a aproximar o diagnóstico
-                  por imagem de alta qualidade dos moradores da nossa região.
+                  Médico radiologista, fundador e responsável técnico da Maxxi Saúde.
+                  Apaixonado pelo Xingu, passou a carreira trazendo para perto daqui os
+                  exames que antes só tinha em cidade grande.
                 </p>
               </div>
               <style>{`@media (max-width: 720px) { #founder { grid-template-columns: 1fr !important; justify-items: start; } }`}</style>

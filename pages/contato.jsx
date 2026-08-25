@@ -1,6 +1,9 @@
 /* global React, ReactDOM, PageShell, TweaksPanel, Icon, Button, Badge, IconCircle, SectionTitle, Eyebrow, Card,
           SPECIALTIES, GENERAL_WHATS, RECEPCAO_WHATS, IA_WHATS, PLANTAO_WHATS, PHONE_FIXED, PHONE_FIXED_TEL */
 
+const MAPS_LINK = "https://www.google.com/maps/search/?api=1&query=" +
+  encodeURIComponent("Maxxi Saúde, Travessa Coronel Tancredo, 45, Centro, Altamira, PA");
+
 const formatWhats = (w) => "+55 (" + w.slice(2, 4) + ") " + w.slice(4, 9) + "-" + w.slice(9);
 
 function ContatoPage() {
@@ -15,8 +18,8 @@ function ContatoPage() {
               <span style={{ color: "var(--site-accent-600)" }}>pelo canal certo.</span>
             </h1>
             <p style={{ fontSize: 19, color: "var(--fg-default)", lineHeight: 1.55, maxWidth: 720, margin: 0 }}>
-              Cada canal tem um propósito. Escolha o que combina com o que você precisa —
-              a gente responde rapidinho.
+              Escolha embaixo o jeito que for melhor para você. Para marcar consulta ou
+              exame e falar com uma pessoa, use o WhatsApp da Recepção — o primeiro da lista.
             </p>
           </div>
         </section>
@@ -29,7 +32,7 @@ function ContatoPage() {
                 eyebrow="Recepção"
                 title="WhatsApp da Recepção"
                 number="(93) 99180-1155"
-                purpose="Agendamento, informações sobre exames e convênios, retorno de ligação e tudo que precisa de uma pessoa do outro lado."
+                purpose="Para marcar consulta e exame, tirar dúvida sobre plano de saúde e pedir uma ligação. Aqui do outro lado tem uma pessoa da equipe. Pode mandar áudio."
                 cta="Falar com a Recepção"
                 href={"https://wa.me/" + RECEPCAO_WHATS + "?text=" + encodeURIComponent("Olá! Vim pelo site da Maxxi Saúde.")}
                 icon="whatsapp"
@@ -40,34 +43,34 @@ function ContatoPage() {
                 eyebrow="Voz"
                 title="Telefone Fixo"
                 number={PHONE_FIXED}
-                purpose="Se prefere ligar, este é o número certo. Atendimento durante o expediente da clínica."
+                purpose="Se você prefere falar por voz, ligue neste número. Atendemos no horário da clínica."
                 cta="Ligar agora"
                 href={"tel:" + PHONE_FIXED_TEL}
                 icon="phone"
                 color="blue-solid"
-                tag={{ label: "Único para ligações", variant: "soft-blue" }}
+                tag={{ label: "Para ligar", variant: "soft-blue" }}
               />
               <ChannelCard
                 eyebrow="Dúvidas gerais"
                 title="Atendimento por IA"
                 number="(93) 93300-3181"
-                purpose="Tire dúvidas gerais sobre a clínica, exames e preparos a qualquer hora — resposta automática 24h, exclusivo para mensagens."
+                purpose="Para dúvidas simples a qualquer hora do dia ou da noite. Quem responde é um atendente automático, na hora. Só aceita mensagem, não recebe ligação."
                 cta="Conversar com a IA"
                 href={"https://wa.me/" + IA_WHATS + "?text=" + encodeURIComponent("Olá! Tenho uma dúvida sobre a Maxxi Saúde.")}
                 icon="sparkle"
                 color="accent"
-                tag={{ label: "Só mensagens · 24h", variant: "soft-accent" }}
+                tag={{ label: "Só mensagem · 24 horas", variant: "soft-accent" }}
               />
               <ChannelCard
                 eyebrow="Emergência"
                 title="WhatsApp do Plantão 24h"
                 number="(93) 99107-1980"
-                purpose="Urgências de tomografia e raio-x, todos os dias, inclusive feriados. Reserve este canal só para emergências."
+                purpose="Só para urgência de tomografia e raio-x, a qualquer hora, todo dia. Se não for urgência, use o WhatsApp da Recepção."
                 cta="Chamar o plantão"
                 href={"https://wa.me/" + PLANTAO_WHATS + "?text=" + encodeURIComponent("Olá! Preciso do plantão da Maxxi Saúde.")}
                 icon="heart-pulse"
                 color="blue"
-                tag={{ label: "Só urgências", variant: "warning" }}
+                tag={{ label: "Só urgência", variant: "warning" }}
               />
             </div>
 
@@ -80,10 +83,10 @@ function ContatoPage() {
               <IconCircle name="info" color="blue" size={40} stroke={1.6}/>
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: 15, fontWeight: 800, color: "var(--fg-strong)", marginBottom: 4 }}>
-                  Quer falar por voz? Use só o telefone fixo ou peça uma ligação pelo WhatsApp da Recepção.
+                  Quer falar por voz? Ligue no telefone fixo, ou peça no WhatsApp da Recepção que a gente liga para você.
                 </div>
                 <div style={{ fontSize: 14, color: "var(--fg-muted)", lineHeight: 1.5 }}>
-                  Os números da IA e do Plantão são exclusivos para mensagens — chamadas por voz nesses canais não são atendidas.
+                  Os números do atendimento automático e do plantão só recebem mensagem. Ligação nesses dois não toca.
                 </div>
               </div>
             </div>
@@ -98,7 +101,7 @@ function ContatoPage() {
             <SectionTitle
               eyebrow="Especialidades"
               title="Procurando o contato de uma especialidade?"
-              kicker="Algumas equipes têm WhatsApp direto. Você fala com quem vai te atender — sem central. As demais especialidades são agendadas pela Recepção."
+              kicker="Algumas equipes têm WhatsApp próprio: você fala direto com quem vai te atender. As outras especialidades a Recepção marca para você."
             />
             <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12 }} id="spec-grid">
               {SPECIALTIES.filter(s => s.directWhats).map(s => (
@@ -137,8 +140,8 @@ function ContatoPage() {
                 </div>
               </div>
               <Button variant="primary" size="sm" icon="whatsapp"
-                      href={"https://wa.me/" + RECEPCAO_WHATS + "?text=" + encodeURIComponent("Olá! Gostaria de agendar uma consulta na Maxxi Saúde.")}
-                      target="_blank">Agendar com a Recepção</Button>
+                      href={"https://wa.me/" + RECEPCAO_WHATS + "?text=" + encodeURIComponent("Olá! Quero marcar uma consulta.")}
+                      target="_blank">Falar com a Recepção</Button>
             </div>
             <style>{`@media (max-width: 720px) { #spec-grid { grid-template-columns: 1fr !important; } }`}</style>
           </div>
@@ -273,10 +276,15 @@ function MapPlaceholder() {
           boxShadow: "0 4px 12px rgba(126,195,101,0.5)",
         }}/>
       </div>
-      <div style={{ position: "absolute", left: 16, bottom: 16, background: "rgba(255,255,255,0.96)", padding: "10px 14px", borderRadius: 999, fontSize: 12, fontWeight: 700, color: "var(--fg-muted)" }}>
-        <Icon name="map-pin" size={12} style={{ verticalAlign: "-2px", marginRight: 6, color: "var(--site-accent-600)" }}/>
-        Mapa demonstrativo — substituir por embed do Google Maps
-      </div>
+      <a href={MAPS_LINK} target="_blank" rel="noopener"
+         style={{ position: "absolute", left: 16, bottom: 16, background: "#fff",
+                  padding: "14px 20px", borderRadius: 999, fontSize: 15, fontWeight: 800,
+                  color: "var(--ms-blue-700)", textDecoration: "none", minHeight: 48,
+                  display: "inline-flex", alignItems: "center", gap: 8,
+                  boxShadow: "var(--sh-md)" }}>
+        <Icon name="map-pin" size={18} style={{ color: "var(--site-accent-600)" }}/>
+        Ver no mapa como chegar
+      </a>
     </div>
   );
 }

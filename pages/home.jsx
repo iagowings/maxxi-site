@@ -1,6 +1,15 @@
 /* global React, Icon, Button, Badge, IconCircle, DoctorAvatar, SectionTitle, Eyebrow, Card, SPECIALTIES, EQUIPMENT, CONVENIOS, GENERAL_WHATS, SpecialtiesGrid */
 const { useState: useStateH, useEffect: useEffectH } = React;
 
+/* Cada equipamento aponta para a pagina do exame correspondente.
+   As ancoras antigas (/tomografia-128-canais/#slug) deixaram de existir
+   quando a pagina da tomografia foi reescrita. */
+const EQUIP_LINK = {
+  "tomografia-128": "/tomografia-128-canais/",
+  "ressonancia-alto-campo": "/exames/ressonancia-magnetica/",
+  "mamografia-digital": "/exames/mamografia-digital/",
+};
+
 /* ============================================================
    1. Hero
    ============================================================ */
@@ -20,17 +29,18 @@ function HomeHero() {
             fontSize: 68, lineHeight: 1.02, letterSpacing: "-0.035em", fontWeight: 900,
             color: "var(--fg-strong)", margin: "22px 0 22px",
           }}>
-            Cuidado humano,<br />
-            <span style={{ color: "var(--site-accent-500)" }}>tecnologia</span> de capital.
+            Consulta e exame<br />
+            <span style={{ color: "var(--site-accent-500)" }}>aqui em Altamira</span>.
           </h1>
           <p style={{ fontSize: 20, color: "var(--fg-default)", lineHeight: 1.5, maxWidth: 540, marginBottom: 32 }}>
-            Você não precisa mais sair de Altamira para ter atendimento de qualidade.
+            Você não precisa mais viajar para fazer exame. A gente marca pelo
+            WhatsApp — pode mandar áudio.
           </p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
             <Button variant="primary" size="lg" icon="calendar"
               href={"https://wa.me/" + GENERAL_WHATS + "?text=" + encodeURIComponent("Olá! Gostaria de agendar.")}
               target="_blank">Quero agendar</Button>
-            <Button variant="outline" size="lg" iconAfter="arrow-right" href="/tomografia-128-canais/">Ver nova tecnologia</Button>
+            <Button variant="outline" size="lg" iconAfter="arrow-right" href="/tomografia-128-canais/">Ver a tomografia</Button>
           </div>
         </div>
 
@@ -60,7 +70,7 @@ function HomeHero() {
             <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "flex-end", padding: 28, color: "#fff" }}>
               <div>
                 <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: "-0.01em", lineHeight: 1.15, textShadow: "0 1px 12px rgba(0,0,0,0.35)" }}>
-                  Atendimento humanizado<br />com tecnologia de ponta.
+                  A gente atende com calma<br />e explica cada passo.
                 </div>
               </div>
             </div>
@@ -161,15 +171,15 @@ function Tom128Strip() {
             <span style={{ color: "var(--site-accent-300)" }}>128 canais.</span>
           </h2>
           <p style={{ fontSize: 18, color: "rgba(255,255,255,0.82)", lineHeight: 1.55, maxWidth: 520, margin: "0 0 28px" }}>
-            Imagens de altíssima definição, exames em segundos, menor dose de radiação.
-            Diagnósticos que antes exigiam viagem a Belém — agora ficam no centro de Altamira.
+            Exame rápido e sem dor, com menos radiação que os aparelhos antigos.
+            O que antes obrigava a viajar até Belém, hoje você resolve no centro de Altamira.
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 28 }}>
             {[
-              ["0,33 s", "por rotação"],
-              ["3D", "reconstruções em alta resolução"],
-              ["−40 %", "dose de radiação com algoritmos iterativos"],
-              ["24 h", "plantão para urgências"],
+              ["15 min", "é quanto costuma durar o exame"],
+              ["Sem dor", "você fica deitado e não sente nada"],
+              ["Menos", "radiação que em aparelhos antigos"],
+              ["24 h", "aberto todo dia para urgência"],
             ].map(([k, v]) => (
               <div key={k} style={{
                 padding: "16px 18px", borderRadius: 14,
@@ -182,7 +192,7 @@ function Tom128Strip() {
             ))}
           </div>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-            <Button variant="primary" size="lg" iconAfter="arrow-right" href="/tomografia-128-canais/">Conhecer a tecnologia</Button>
+            <Button variant="primary" size="lg" iconAfter="arrow-right" href="/tomografia-128-canais/">Ver como é o exame</Button>
             <Button variant="onbrand" size="lg" icon="whatsapp"
               href={"https://wa.me/" + GENERAL_WHATS + "?text=" + encodeURIComponent("Olá! Gostaria de agendar uma tomografia.")}
               target="_blank">Agendar tomografia</Button>
@@ -244,7 +254,7 @@ function Tom128Strip() {
             fontSize: 13, fontWeight: 700,
           }}>
             <IconCircle name="scan-line" color="accent" size={36} stroke={2} />
-            Imagens em segundos
+            O exame é rápido
           </div>
         </div>
       </div>
@@ -269,10 +279,10 @@ function SpecialtiesPreview() {
           <div style={{ maxWidth: 640 }}>
             <Eyebrow>Especialidades</Eyebrow>
             <h2 style={{ fontSize: 44, fontWeight: 800, letterSpacing: "-0.025em", color: "var(--fg-strong)", lineHeight: 1.08, margin: 0 }}>
-              12 especialidades, <span style={{ color: "var(--site-accent-600)" }}>um WhatsApp direto</span> para cada uma.
+              12 especialidades. Cada uma com <span style={{ color: "var(--site-accent-600)" }}>um WhatsApp direto</span>.
             </h2>
             <p style={{ fontSize: 18, color: "var(--fg-muted)", marginTop: 18, lineHeight: 1.55 }}>
-              Cada especialista tem um canal direto. Fale com a equipe certa desde a primeira mensagem.
+              Você fala com a equipe certa já na primeira mensagem. Sem central de atendimento, sem esperar na linha.
             </p>
           </div>
           <Button variant="outline" iconAfter="arrow-right" href="/especialidades/">Ver todas</Button>
@@ -293,8 +303,8 @@ function EquipmentRow() {
       <div className="container">
         <SectionTitle
           eyebrow="Tecnologia"
-          title="Equipamentos novos e laudos por especialistas."
-          kicker="Investimos para que o diagnóstico que você precisa esteja perto, com a qualidade que você merece."
+          title="Aparelhos novos, resultado assinado por especialista."
+          kicker="A gente investiu para você fazer perto de casa o exame que antes só tinha em cidade grande."
         />
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }} id="equip-grid">
@@ -308,7 +318,7 @@ function EquipmentRow() {
               <IconCircle name={eq.icon} color={i === 0 ? "accent-solid" : "blue"} size={56} stroke={1.5} />
               <h3 style={{ fontSize: 22, fontWeight: 800, color: "var(--fg-strong)", margin: "18px 0 8px", letterSpacing: "-0.01em" }}>{eq.short}</h3>
               <p style={{ fontSize: 14.5, color: "var(--fg-muted)", lineHeight: 1.55, margin: "0 0 20px", flex: 1 }}>{eq.summary}</p>
-              <a href={"/tomografia-128-canais/#" + eq.slug} style={{
+              <a href={EQUIP_LINK[eq.slug] || "/exames/"} style={{
                 display: "inline-flex", alignItems: "center", gap: 6,
                 fontSize: 14, fontWeight: 700, color: "var(--ms-blue-700)", textDecoration: "none",
               }}>
@@ -335,15 +345,15 @@ function DoctorsStrip() {
           <div>
             <Eyebrow color="blue">Nossa equipe</Eyebrow>
             <h2 style={{ fontSize: 44, fontWeight: 800, letterSpacing: "-0.025em", color: "var(--fg-strong)", lineHeight: 1.08, margin: 0 }}>
-              Especialistas que conhecem<br />
-              <span style={{ color: "var(--ms-blue-500)" }}>a sua história.</span>
+              Você fala direto com<br />
+              <span style={{ color: "var(--ms-blue-500)" }}>quem vai te atender.</span>
             </h2>
             <p style={{ fontSize: 17, color: "var(--fg-muted)", marginTop: 18, lineHeight: 1.55, maxWidth: 460 }}>
-              Médicas e médicos com agendas próprias e canais diretos. Você fala
-              com quem vai te atender — sem central de telemarketing.
+              Cada médica tem o WhatsApp dela. Você manda mensagem e fala com a
+              equipe da especialidade — sem telemarketing e sem ficar na espera.
             </p>
             <div style={{ marginTop: 24 }}>
-              <Button variant="secondary" iconAfter="arrow-right" href="/especialidades/">Ver todos os profissionais</Button>
+              <Button variant="secondary" iconAfter="arrow-right" href="/especialidades/">Ver todas as especialidades</Button>
             </div>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 14 }} id="doc-cards">
@@ -387,10 +397,10 @@ function ConveniosBand() {
           <div>
             <Eyebrow color="blue">Convênios</Eyebrow>
             <h3 style={{ fontSize: 26, fontWeight: 800, color: "var(--fg-strong)", letterSpacing: "-0.02em", margin: 0 }}>
-              Atendemos os principais convênios da região.
+              Aceitamos vários planos de saúde.
             </h3>
             <a href="/convenios/" style={{ display: "inline-flex", alignItems: "center", gap: 6, marginTop: 12, fontSize: 14, fontWeight: 700, color: "var(--ms-blue-700)", textDecoration: "none" }}>
-              Ver lista completa <Icon name="arrow-right" size={14} />
+              Ver a lista <Icon name="arrow-right" size={14} />
             </a>
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
@@ -439,13 +449,13 @@ function FinalCta() {
           }} />
           <div style={{ position: "relative", display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 48, alignItems: "center" }} id="cta-grid">
             <div>
-              <Badge variant="solid-accent" icon="clock">Plantão 24h tomografia &amp; raio-x</Badge>
+              <Badge variant="solid-accent" icon="clock">Plantão 24 horas: tomografia e raio-x</Badge>
               <h2 style={{ fontSize: 52, fontWeight: 900, letterSpacing: "-0.03em", lineHeight: 1.02, margin: "16px 0 16px", color: "#fff" }}>
                 Vamos cuidar de você?
               </h2>
               <p style={{ fontSize: 18, color: "rgba(255,255,255,0.82)", lineHeight: 1.5, maxWidth: 520, margin: "0 0 28px" }}>
-                Agende uma consulta ou exame em poucos minutos. A equipe da Maxxi
-                Saúde te responde direto no WhatsApp da especialidade.
+                Mande uma mensagem no WhatsApp. Pode ser por áudio — a gente escuta,
+                responde e combina o dia com você.
               </p>
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                 <Button variant="primary" size="lg" icon="calendar"
@@ -463,9 +473,9 @@ function FinalCta() {
               }}>
                 <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", marginBottom: 14 }}>Atendimento</div>
                 <InfoRow icon="map-pin" label="Tv. Coronel Tancredo, 45 · Centro · Altamira / PA" />
-                <InfoRow icon="clock" label="Seg–Sáb · 7h às 19h" />
-                <InfoRow icon="whatsapp" label="(93) 99180-5990" />
-                <InfoRow icon="check-circle" label="Plantão 24h · todos os dias" />
+                <InfoRow icon="clock" label="De segunda a sábado, das 7h às 19h" />
+                <InfoRow icon="whatsapp" label="(93) 99180-1155" />
+                <InfoRow icon="check-circle" label="Plantão 24 horas, todo dia" />
               </div>
             </div>
           </div>

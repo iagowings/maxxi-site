@@ -12,7 +12,7 @@ function ExamePage() {
         <section className="section-pad">
           <div className="container" style={{ maxWidth: 720, textAlign: "center" }}>
             <h1 style={{ fontSize: 40, fontWeight: 800, color: "var(--fg-strong)" }}>Exame não encontrado</h1>
-            <p style={{ fontSize: 18, color: "var(--fg-muted)" }}>Veja todos os exames disponíveis.</p>
+            <p style={{ fontSize: 18, color: "var(--fg-muted)" }}>Veja a lista de exames que a gente faz.</p>
             <Button variant="primary" href="/exames/" iconAfter="arrow-right">Ver todos os exames</Button>
           </div>
         </section>
@@ -43,8 +43,8 @@ function ExamePage() {
             </p>
             <div style={{ marginTop: 24 }}>
               <Button variant="primary" size="lg" icon="whatsapp"
-                      href={"https://wa.me/" + GENERAL_WHATS + "?text=" + encodeURIComponent("Olá! Gostaria de agendar " + exam.name + " na Maxxi Saúde.")}
-                      target="_blank">Agendar {exam.name}</Button>
+                      href={"https://wa.me/" + GENERAL_WHATS + "?text=" + encodeURIComponent("Olá! Quero marcar " + exam.name + ".")}
+                      target="_blank">Marcar pelo WhatsApp</Button>
             </div>
           </div>
         </section>
@@ -52,13 +52,13 @@ function ExamePage() {
         <section className="section-pad-sm">
           <div className="container" id="exam-detail-grid" style={{ maxWidth: 880, display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: 32, alignItems: "start" }}>
             <div>
-              <h2 style={{ fontSize: 26, fontWeight: 800, color: "var(--fg-strong)", letterSpacing: "-0.02em", margin: "0 0 14px" }}>Sobre o exame</h2>
+              <h2 style={{ fontSize: 26, fontWeight: 800, color: "var(--fg-strong)", letterSpacing: "-0.02em", margin: "0 0 14px" }}>Como é o exame</h2>
               <p style={{ fontSize: 16, color: "var(--fg-default)", lineHeight: 1.7, margin: 0 }}>{exam.description}</p>
             </div>
             <Card accentBar style={{ padding: 28 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
                 <IconCircle name="info" color="accent" size={40} stroke={1.6}/>
-                <h3 style={{ fontSize: 18, fontWeight: 800, color: "var(--fg-strong)", margin: 0 }}>Preparo</h3>
+                <h3 style={{ fontSize: 18, fontWeight: 800, color: "var(--fg-strong)", margin: 0 }}>Antes de vir</h3>
               </div>
               <p style={{ fontSize: 14.5, color: "var(--fg-muted)", lineHeight: 1.6, margin: 0 }}>{exam.prep}</p>
             </Card>
@@ -68,7 +68,7 @@ function ExamePage() {
 
         <section className="section-pad-sm" style={{ background: "var(--bg-subtle, #f7f9fb)" }}>
           <div className="container" style={{ maxWidth: 880 }}>
-            <h2 style={{ fontSize: 24, fontWeight: 800, color: "var(--fg-strong)", letterSpacing: "-0.02em", margin: "0 0 24px" }}>Outros exames</h2>
+            <h2 style={{ fontSize: 24, fontWeight: 800, color: "var(--fg-strong)", letterSpacing: "-0.02em", margin: "0 0 24px" }}>Outros exames que a gente faz</h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(240px, 100%), 1fr))", gap: 16 }}>
               {related.map((e) => (
                 <a key={e.slug} href={"/exames/" + e.slug + "/"} style={{ textDecoration: "none" }}>

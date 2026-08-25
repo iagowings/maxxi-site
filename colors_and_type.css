@@ -63,7 +63,7 @@
 
   --fg-strong:   var(--ms-blue-800);    /* headings */
   --fg-default:  var(--ms-neutral-700); /* body */
-  --fg-muted:    var(--ms-neutral-500); /* secondary */
+  --fg-muted:    var(--ms-neutral-600); /* secondary — 600 e nao 500: publico 50+ le muito texto secundario */
   --fg-faint:    var(--ms-neutral-400); /* hints */
   --fg-onbrand:  var(--ms-white);
   --fg-link:     var(--ms-blue-500);

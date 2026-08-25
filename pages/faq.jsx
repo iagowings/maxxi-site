@@ -20,8 +20,8 @@ function FaqPage() {
               <span style={{ color: "var(--site-accent-600)" }}>A gente responde com calma.</span>
             </h1>
             <p style={{ fontSize: 19, color: "var(--fg-default)", lineHeight: 1.55, maxWidth: 720, margin: 0 }}>
-              Reunimos aqui as perguntas que mais ouvimos. Se a sua não estiver na
-              lista, é só mandar mensagem — nossa equipe responde no mesmo dia.
+              Estas são as perguntas que a gente mais ouve. Se a sua não estiver aqui,
+              é só mandar mensagem no WhatsApp — pode ser áudio. A gente responde no mesmo dia.
             </p>
           </div>
         </section>
@@ -41,7 +41,7 @@ function FaqPage() {
               <div style={{ flex: 1, minWidth: 240 }}>
                 <h3 style={{ fontSize: 22, fontWeight: 800, color: "var(--fg-strong)", margin: 0, letterSpacing: "-0.01em" }}>Não encontrou sua resposta?</h3>
                 <p style={{ fontSize: 14.5, color: "var(--fg-muted)", margin: "6px 0 0", lineHeight: 1.5 }}>
-                  Estamos esperando por você. Manda mensagem que a gente responde rapidinho.
+                  Manda mensagem que a gente responde. Pode mandar áudio, se for mais fácil.
                 </p>
               </div>
               <Button variant="primary" icon="whatsapp"

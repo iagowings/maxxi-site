@@ -18,9 +18,8 @@ function EspecialidadesPage() {
               <span style={{ color: "var(--site-accent-600)" }}>um canal direto pra você.</span>
             </h1>
             <p style={{ fontSize: 19, color: "var(--fg-default)", lineHeight: 1.55, maxWidth: 720, margin: 0 }}>
-              Da saúde da mulher à neurologia, da pediatria à cardiologia — toda a
-              equipe da Maxxi Saúde reunida em um só lugar. Filtre por categoria,
-              busque por médica ou exame, e fale direto pelo WhatsApp da especialidade.
+              Aqui você encontra ginecologista, pediatra, cardiologista, dentista e mais.
+              Escolha embaixo o que você precisa e fale direto no WhatsApp — pode mandar áudio.
             </p>
           </div>
         </section>
@@ -53,7 +52,7 @@ function EspecialidadesPage() {
               })}
             </div>
             <div id="filter-search" style={{ width: 280, maxWidth: "100%" }}>
-              <Field icon="search" placeholder="Buscar especialidade, médica ou exame…" value={search} onChange={setSearch}/>
+              <Field icon="search" placeholder="Procure por médico, exame ou o que você está sentindo…" value={search} onChange={setSearch}/>
             </div>
           </div>
           <style>{`
@@ -95,14 +94,14 @@ function EspecialidadesPage() {
             }}>
               <IconCircle name="stethoscope" color="blue-solid" size={56}/>
               <div style={{ flex: 1, minWidth: 240 }}>
-                <h3 style={{ fontSize: 20, fontWeight: 800, color: "var(--fg-strong)", margin: 0, letterSpacing: "-0.01em" }}>Não encontrou a especialidade?</h3>
+                <h3 style={{ fontSize: 20, fontWeight: 800, color: "var(--fg-strong)", margin: 0, letterSpacing: "-0.01em" }}>Não achou o que procura?</h3>
                 <p style={{ fontSize: 14.5, color: "var(--fg-muted)", margin: "6px 0 0", lineHeight: 1.5 }}>
-                  Estamos sempre ampliando nossa equipe. Mande uma mensagem e a gente
-                  te avisa quando a especialidade que você procura chegar à Maxxi.
+                  A gente está sempre trazendo médicos novos. Manda uma mensagem contando
+                  o que você precisa — se a gente não tiver, indica quem tem.
                 </p>
               </div>
               <Button variant="secondary" icon="whatsapp"
-                      href={"https://wa.me/" + GENERAL_WHATS + "?text=" + encodeURIComponent("Olá! Procuro uma especialidade que não vi no site.")}
+                      href={"https://wa.me/" + GENERAL_WHATS + "?text=" + encodeURIComponent("Olá! Procuro um atendimento que não vi no site.")}
                       target="_blank">Falar com a clínica</Button>
             </div>
           </div>

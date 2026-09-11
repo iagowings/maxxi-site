@@ -14,6 +14,15 @@ $tpl = @'
 <!doctype html>
 <html lang="pt-BR">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BCMCHPJ1W4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BCMCHPJ1W4');
+</script>
 <meta charset="utf-8"/>
 <title>@@TITLE@@</title>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -27,13 +36,40 @@ $tpl = @'
 <meta property="og:description" content="@@DESC@@"/>
 <meta property="og:url" content="@@CANON@@"/>
 <meta property="og:image" content="https://www.maxxisaude.com/assets/logo-primary.png"/>
-<meta name="twitter:card" content="summary"/>
+<meta name="twitter:card" content="summary_large_image"/>
 <link rel="preconnect" href="https://unpkg.com" crossorigin/>
 <link rel="preconnect" href="https://connect.facebook.net"/>
 <link rel="icon" type="image/png" href="/assets/logo-mark.png"/>
 <link rel="stylesheet" href="/colors_and_type.css?v=@@V@@"/>
 <link rel="stylesheet" href="/styles.css?v=@@V@@"/>
-
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalClinic",
+  "@id": "https://www.maxxisaude.com/#clinic",
+  "name": "Maxxi Saude",
+  "url": "https://www.maxxisaude.com/",
+  "image": "https://www.maxxisaude.com/assets/logo-primary.png",
+  "logo": "https://www.maxxisaude.com/assets/logo-primary.png",
+  "telephone": "+55 93 3515-1122",
+  "priceRange": "$$",
+  "medicalSpecialty": ["Radiology", "Diagnostic imaging"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Tv. Coronel Tancredo, 45, Centro",
+    "addressLocality": "Altamira",
+    "addressRegion": "PA",
+    "addressCountry": "BR"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    "opens": "07:00",
+    "closes": "19:00"
+  }
+}
+</script>
+@@LD@@
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
@@ -78,7 +114,28 @@ foreach ($p in $pages) {
   $inline = ""
   if (-not [string]::IsNullOrEmpty($p.inline)) { $inline = $p.inline }
 
-  $html = $tpl.Replace("@@TITLE@@", $p.title).Replace("@@DESC@@", $p.desc).Replace("@@CANON@@", $canon).Replace("@@INLINE@@", $inline).Replace("@@PAGE@@", $p.page).Replace("@@V@@", $ver)
+  # MedicalTest structured data para as paginas de exame (template /pages/exame.jsx)
+  # e para o hub da tomografia - reaproveita title/desc ja revisados, sem duplicar
+  # conteudo em outro lugar.
+  $ld = ""
+  if ($p.page -eq "/pages/exame.jsx" -or $folder -eq "tomografia-128-canais") {
+    $titleEsc = $p.title -replace '"', '\"'
+    $descEsc  = $p.desc  -replace '"', '\"'
+    $ld = @"
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalTest",
+  "name": "$titleEsc",
+  "description": "$descEsc",
+  "url": "$canon",
+  "provider": { "@id": "https://www.maxxisaude.com/#clinic" }
+}
+</script>
+"@
+  }
+
+  $html = $tpl.Replace("@@TITLE@@", $p.title).Replace("@@DESC@@", $p.desc).Replace("@@CANON@@", $canon).Replace("@@INLINE@@", $inline).Replace("@@LD@@", $ld).Replace("@@PAGE@@", $p.page).Replace("@@V@@", $ver)
 
   $out = Join-Path $dir "index.html"
   [System.IO.File]::WriteAllText($out, $html, $utf8)

@@ -89,6 +89,7 @@ $tpl = @'
 @@INLINE@@
 <script type="text/babel" src="/shared/primitives.jsx?v=@@V@@"></script>
 <script type="text/babel" src="/shared/data.jsx?v=@@V@@"></script>
+<script type="text/babel" src="/shared/blog-data.jsx?v=@@V@@"></script>
 <script type="text/babel" src="/shared/tweaks.jsx?v=@@V@@"></script>
 <script type="text/babel" src="/shared/SpecialtyCard.jsx?v=@@V@@"></script>
 <script type="text/babel" src="/shared/acessibilidade.jsx?v=@@V@@"></script>
@@ -130,6 +131,26 @@ foreach ($p in $pages) {
   "description": "$descEsc",
   "url": "$canon",
   "provider": { "@id": "https://www.maxxisaude.com/#clinic" }
+}
+</script>
+"@
+  } elseif ($p.page -eq "/pages/blog-post.jsx") {
+    $titleEsc = $p.title -replace '"', '\"'
+    $descEsc  = $p.desc  -replace '"', '\"'
+    $date = $p.date
+    $ld = @"
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "$titleEsc",
+  "description": "$descEsc",
+  "datePublished": "$date",
+  "dateModified": "$date",
+  "url": "$canon",
+  "inLanguage": "pt-BR",
+  "author": { "@id": "https://www.maxxisaude.com/#clinic" },
+  "publisher": { "@id": "https://www.maxxisaude.com/#clinic" }
 }
 </script>
 "@

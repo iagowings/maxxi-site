@@ -21,6 +21,7 @@ function Header({ active = "home" }) {
     { id: "tecnologia",     href: "/tomografia-128-canais/", label: "Tecnologia" },
     { id: "convenios",      href: "/convenios/",      label: "Convênios" },
     { id: "resultados",     href: "/resultados/",     label: "Resultados online" },
+    { id: "blog",           href: "/blog/",           label: "Blog" },
     { id: "contato",        href: "/contato/",        label: "Contato" },
   ];
 
@@ -147,6 +148,7 @@ function Footer() {
             ["/especialidades/", "Especialidades"],
             ["/exames/", "Exames"],
             ["/tomografia-128-canais/", "Tomografia 128 canais"],
+            ["/blog/", "Blog"],
             ["/sobre/", "A clínica"],
           ]}/>
         </div>

@@ -153,5 +153,37 @@
     "title": "Laboratório de Análises Clínicas em Altamira — Maxxi Saúde",
     "desc": "Laboratório de análises clínicas em Altamira/PA: exames de sangue, urina e hormonais com coleta diária e resultados online.",
     "inline": "<script>window.EXAME_SLUG=\"laboratorio-de-analises-clinicas\";</script>"
+  },
+
+  {
+    "folder": "blog",
+    "page": "/pages/blog.jsx",
+    "title": "Blog — Dicas sobre exames e saúde em Altamira | Maxxi Saúde",
+    "desc": "Dicas sobre tomografia, ressonância, mamografia e outros exames em Altamira/PA: quando fazer, como se preparar e como marcar.",
+    "inline": ""
+  },
+  {
+    "folder": "blog/melhor-preco-ressonancia-magnetica-altamira",
+    "page": "/pages/blog-post.jsx",
+    "title": "Melhor Preço de Ressonância Magnética em Altamira: Como Funciona e Como Agendar",
+    "desc": "Quem procura ressonância magnética em Altamira quer preço justo e um aparelho confiável. Veja como funciona o orçamento e como marcar pelo WhatsApp.",
+    "date": "2026-09-15",
+    "inline": "<script>window.BLOG_SLUG=\"melhor-preco-ressonancia-magnetica-altamira\";</script>"
+  },
+  {
+    "folder": "blog/tomografia-24-horas-altamira",
+    "page": "/pages/blog-post.jsx",
+    "title": "Onde Encontrar Tomografia 24 Horas em Altamira/PA",
+    "desc": "Precisa de tomografia fora do horário comercial em Altamira? Veja como funciona o plantão de tomografia e raio-X 24 horas da Maxxi Saúde.",
+    "date": "2026-09-15",
+    "inline": "<script>window.BLOG_SLUG=\"tomografia-24-horas-altamira\";</script>"
+  },
+  {
+    "folder": "blog/mamografia-altamira-quando-fazer-onde-marcar",
+    "page": "/pages/blog-post.jsx",
+    "title": "Mamografia em Altamira: Quando Fazer e Onde Marcar",
+    "desc": "A mamografia ajuda a encontrar sinais de câncer de mama bem no início. Veja como é o exame, o preparo e onde marcar em Altamira.",
+    "date": "2026-09-15",
+    "inline": "<script>window.BLOG_SLUG=\"mamografia-altamira-quando-fazer-onde-marcar\";</script>"
   }
 ]

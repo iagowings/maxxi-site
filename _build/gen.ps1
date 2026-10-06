@@ -35,7 +35,7 @@ $tpl = @'
 <meta property="og:title" content="@@TITLE@@"/>
 <meta property="og:description" content="@@DESC@@"/>
 <meta property="og:url" content="@@CANON@@"/>
-<meta property="og:image" content="https://www.maxxisaude.com/assets/logo-primary.png"/>
+<meta property="og:image" content="@@IMG@@"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <link rel="preconnect" href="https://unpkg.com" crossorigin/>
 <link rel="preconnect" href="https://connect.facebook.net"/>
@@ -156,7 +156,11 @@ foreach ($p in $pages) {
 "@
   }
 
-  $html = $tpl.Replace("@@TITLE@@", $p.title).Replace("@@DESC@@", $p.desc).Replace("@@CANON@@", $canon).Replace("@@INLINE@@", $inline).Replace("@@LD@@", $ld).Replace("@@PAGE@@", $p.page).Replace("@@V@@", $ver)
+  # og:image por pagina (ex.: arte do evento no preview do WhatsApp); padrao = logo.
+  $img = "https://www.maxxisaude.com/assets/logo-primary.png"
+  if (-not [string]::IsNullOrEmpty($p.image)) { $img = $p.image }
+
+  $html = $tpl.Replace("@@IMG@@", $img).Replace("@@TITLE@@", $p.title).Replace("@@DESC@@", $p.desc).Replace("@@CANON@@", $canon).Replace("@@INLINE@@", $inline).Replace("@@LD@@", $ld).Replace("@@PAGE@@", $p.page).Replace("@@V@@", $ver)
 
   $out = Join-Path $dir "index.html"
   [System.IO.File]::WriteAllText($out, $html, $utf8)

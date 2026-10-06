@@ -185,5 +185,13 @@
     "desc": "A mamografia ajuda a encontrar sinais de câncer de mama bem no início. Veja como é o exame, o preparo e onde marcar em Altamira.",
     "date": "2026-09-15",
     "inline": "<script>window.BLOG_SLUG=\"mamografia-altamira-quando-fazer-onde-marcar\";</script>"
+  },
+  {
+    "folder": "workshop",
+    "page": "/pages/workshop.jsx",
+    "title": "2º Workshop Médico Cardiovascular — Maxxi Saúde",
+    "desc": "Convite para médicos: TC e RM cardiovascular, escore de cálcio, DAC e cardiomiopatias. Sexta-feira, 4/12, na Maxxi Saúde em Altamira/PA.",
+    "image": "https://www.maxxisaude.com/assets/workshop-cardiovascular.jpg",
+    "inline": ""
   }
 ]

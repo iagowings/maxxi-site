@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Icon, WhatsAppMark, PageShell, RECEPCAO_WHATS, PHONE_FIXED */
+/* global React, ReactDOM, Icon, WhatsAppMark, PageShell, PHONE_FIXED */
 
 /* =============================================================
    /workshop/ — convite do 2º Workshop Médico Cardiovascular.
@@ -22,9 +22,9 @@ const EVENTO = {
   endereco: "Tv. Coronel Tancredo, 45 · Centro · Altamira/PA",
 };
 
-const WS_RSVP = "https://wa.me/" + RECEPCAO_WHATS + "?text=" + encodeURIComponent(
-  "Olá! Confirmo minha presença no " + EVENTO.edicao + " Workshop Médico Cardiovascular (" + EVENTO.dataCurta + ").\n" +
-  "Nome: \nCRM/Especialidade: "
+// Confirmações vão para um WhatsApp próprio do evento, não para a Recepção.
+const WS_RSVP = "https://wa.me/5593991728939?text=" + encodeURIComponent(
+  "Olá, quero confirmar minha presença no 2 Workshop cardiovascular"
 );
 
 const WS_MAPS = "https://www.google.com/maps/search/?api=1&query=" +
@@ -354,8 +354,8 @@ function WorkshopPage() {
             <p className="ws-pill">{EVENTO.dia} · {EVENTO.dataCurta}</p>
             <h2>Esperamos por você.</h2>
             <p className="ws-lead">
-              Confirme sua presença pelo WhatsApp — a mensagem já vai pronta, é só
-              completar com seu nome e CRM. Dúvidas: {PHONE_FIXED}.
+              Confirme sua presença pelo WhatsApp — a mensagem já vai pronta,
+              é só enviar. Dúvidas: {PHONE_FIXED}.
             </p>
             <div className="ws-ctas ws-ctas-c">
               <a className="ws-btn" href={WS_RSVP} target="_blank" rel="noopener">

@@ -352,7 +352,7 @@ function WorkshopPage() {
             <h2>Esperamos por você.</h2>
             <p className="ws-lead">
               Confirme sua presença pelo WhatsApp — a mensagem já vai pronta,
-              é só enviar. Dúvidas: {PHONE_FIXED}.
+              é só enviar.
             </p>
             <div className="ws-ctas ws-ctas-c">
               <a className="ws-btn" href={WS_RSVP} target="_blank" rel="noopener">

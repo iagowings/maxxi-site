@@ -99,8 +99,13 @@ function WorkshopPage() {
             </div>
 
             <figure className="ws-poster">
-              <img src="/assets/workshop-cardiovascular.jpg" width="941" height="1672"
-                   alt={"Convite do " + EVENTO.edicao + " Workshop Médico Cardiovascular da Maxxi Saúde, " + EVENTO.dataCurta + ", " + EVENTO.dia}/>
+              {/* Muted é obrigatório para o autoplay funcionar; os controles deixam ligar o som.
+                  Com "reduzir movimento" ativo no sistema, não toca sozinho. */}
+              <video src="/assets/ultimoevento.mp4" poster="/assets/workshop-cardiovascular.jpg"
+                     width="720" height="1280" muted loop playsInline controls preload="metadata"
+                     ref={v => { if (v && !matchMedia("(prefers-reduced-motion: reduce)").matches) v.play().catch(() => {}); }}
+                     aria-label="Vídeo da 1ª edição do Workshop Médico da Maxxi Saúde"/>
+              <figcaption>Como foi a 1ª edição</figcaption>
             </figure>
           </div>
           <Ecg/>
@@ -234,8 +239,12 @@ function WorkshopStyles() {
       .ws-link:hover { color: var(--ms-green-300); }
 
       .ws-poster { margin: 0; justify-self: end; max-width: 400px; }
-      .ws-poster img {
-        display: block; width: 100%; height: auto; border-radius: 20px;
+      .ws-poster figcaption {
+        margin-top: 14px; text-align: center; font-size: 12px; font-weight: 800;
+        letter-spacing: 0.16em; text-transform: uppercase; color: rgba(232,240,245,0.7);
+      }
+      .ws-poster video {
+        display: block; width: 100%; height: auto; border-radius: 20px; background: #000;
         border: 1px solid rgba(255,255,255,0.14);
         box-shadow: 0 40px 80px rgba(0,0,0,0.45), 0 0 0 10px rgba(255,255,255,0.03);
       }

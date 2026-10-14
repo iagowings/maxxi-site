@@ -264,9 +264,6 @@ function WorkshopPage() {
                 </figure>
               ))}
             </div>
-            <p className="ws-nota">
-              Imagens ilustrativas de casos publicados sob licença aberta — não são exames realizados na Maxxi Saúde.
-            </p>
           </div>
         </section>
 

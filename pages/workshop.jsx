@@ -12,6 +12,7 @@
 
 const EVENTO = {
   edicao: "2º",
+  iso: "2026-12-04",
   data: "4 de dezembro",
   dataCurta: "04/12",
   dia: "Sexta-feira",
@@ -54,6 +55,66 @@ const TEMAS = [
   ["RM nas cardiomiopatias", "Caracterização tecidual e realce tardio no diagnóstico diferencial das cardiomiopatias."],
 ];
 
+/* Imagens de terceiros (Wikimedia Commons, licenças abertas). A página diz que
+   são ilustrativas e credita autor + licença em cada uma — exigência do CC BY-SA.
+   Quando houver casos anonimizados do tomógrafo da Maxxi, troque aqui. */
+const GALERIA = [
+  {
+    src: "/assets/ws-cadrads.jpg", w: 960, h: 609, cls: "ws-g-wide",
+    tag: "Angio-TC de coronárias",
+    t: "Estenose na DA — CAD-RADS 4A",
+    d: "Reformatações multiplanares, MPR curva e cortes transversais da DA, com reconstrução 3D.",
+    autor: "MBq", lic: "CC BY-SA 4.0",
+    url: "https://commons.wikimedia.org/wiki/File:CCTA_CAD-RADS_4a.png",
+  },
+  {
+    src: "/assets/ws-tc-3d.jpg", w: 415, h: 512, cls: "ws-g-tall",
+    tag: "TC · Volume rendering",
+    t: "Reconstrução 3D do coração",
+    d: "Anatomia cardíaca e trajeto coronariano — caso de aneurismas coronarianos na doença de Kawasaki.",
+    autor: "Hellerhoff", lic: "CC BY-SA 3.0",
+    url: "https://commons.wikimedia.org/wiki/File:Coronaraneursymen_bei_Kawasaki-Syndrom_-_CT_-_Volume_rendering_gesamt_-_023.jpg",
+  },
+  {
+    src: "/assets/ws-cacs.jpg", w: 680, h: 580,
+    tag: "TC sem contraste",
+    t: "Escore de cálcio",
+    d: "Calcificação na DA (em amarelo). Escore de Agatston total: 213.",
+    autor: "MBq", lic: "CC BY-SA 4.0",
+    url: "https://commons.wikimedia.org/wiki/File:CCTA_Agatston-Score.png",
+  },
+  {
+    src: "/assets/ws-rm-realce.jpg", w: 458, h: 414,
+    tag: "RM cardíaca",
+    t: "Realce tardio",
+    d: "Quatro câmaras com realce tardio de gadolínio em infarto inferior crônico.",
+    autor: "Doregan", lic: "CC BY-SA 4.0",
+    url: "https://commons.wikimedia.org/wiki/File:4CH_IR_infarct.jpg",
+  },
+];
+
+/* Faixas de Agatston usuais na prática clínica. O marcador é o caso da galeria (213). */
+const CACS_FAIXAS = [
+  { faixa: "0", nome: "Ausente" },
+  { faixa: "1–99", nome: "Leve" },
+  { faixa: "100–399", nome: "Moderada" },
+  { faixa: "≥ 400", nome: "Acentuada" },
+];
+const CACS_EXEMPLO = 213;
+// Cada faixa ocupa 25% da barra (escala didática, não linear).
+const cacsPos = s => s === 0 ? 12.5 : s < 100 ? 25 + s / 100 * 25 : s < 400 ? 50 + (s - 100) / 300 * 25 : Math.min(75 + (s - 400) / 600 * 25, 97);
+
+/* Força relativa de cada método (0–3). Didático e simplificado de propósito. */
+const METODOS = [
+  ["Anatomia e estenose coronariana", 3, 1],
+  ["Quantificação do cálcio coronariano", 3, 0],
+  ["Função ventricular", 2, 3],
+  ["Caracterização tecidual e fibrose", 1, 3],
+  ["Viabilidade miocárdica", 1, 3],
+];
+
+const diasAte = iso => Math.ceil((new Date(iso + "T00:00:00-03:00") - Date.now()) / 864e5);
+
 const PALESTRANTE = {
   nome: "Dr. Anderson Armstrong",
   foto: "/assets/dr-anderson-armstrong.jpg",
@@ -67,6 +128,7 @@ const PALESTRANTE = {
 };
 
 function WorkshopPage() {
+  const faltam = diasAte(EVENTO.iso);
   return (
     <PageShell active="workshop" hideBubble>
       <div className="ws">
@@ -76,6 +138,9 @@ function WorkshopPage() {
           <div className="container ws-hero-grid">
             <div>
               <span className="ws-pill">Convite · Direcionado a médicos</span>
+              {faltam > 0 && (
+                <span className="ws-count"><b>{faltam}</b> {faltam === 1 ? "dia" : "dias"} para o evento</span>
+              )}
               <h1 className="ws-h1">
                 <span className="ws-ed">{EVENTO.edicao} Workshop Médico</span>
                 Cardiovascular
@@ -173,6 +238,38 @@ function WorkshopPage() {
           </div>
         </section>
 
+        {/* ---------- Galeria ---------- */}
+        <section className="ws-gal">
+          <div className="container">
+            <div className="ws-head">
+              <p className="ws-pill">Imagem cardiovascular</p>
+              <h2>O que a imagem de alta definição revela.</h2>
+              <p className="ws-sub">
+                Da anatomia coronariana à caracterização do miocárdio: exemplos do tipo de
+                informação que TC e RM cardíacas colocam nas mãos do médico assistente.
+              </p>
+            </div>
+            <div className="ws-grid">
+              {GALERIA.map(g => (
+                <figure key={g.src} className={"ws-fig reveal " + (g.cls || "")}>
+                  <div className="ws-fig-img">
+                    <img src={g.src} width={g.w} height={g.h} alt={g.tag + ": " + g.t} loading="lazy"/>
+                  </div>
+                  <figcaption>
+                    <small>{g.tag}</small>
+                    <strong>{g.t}</strong>
+                    <span>{g.d}</span>
+                    <a href={g.url} target="_blank" rel="noopener">Imagem: {g.autor} · {g.lic} · Wikimedia Commons</a>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+            <p className="ws-nota">
+              Imagens ilustrativas de casos publicados sob licença aberta — não são exames realizados na Maxxi Saúde.
+            </p>
+          </div>
+        </section>
+
         {/* ---------- Temas ---------- */}
         <section className="ws-sec ws-sec-alt" id="temas">
           <div className="container ws-temas-grid">
@@ -189,6 +286,65 @@ function WorkshopPage() {
                 </li>
               ))}
             </ol>
+          </div>
+        </section>
+
+        {/* ---------- Gráficos ---------- */}
+        <section className="ws-sec">
+          <div className="container">
+            <div className="ws-head">
+              <p className="t-eyebrow">Em perspectiva</p>
+              <h2>Dois métodos, perguntas diferentes.</h2>
+              <p className="ws-sub">Um aperitivo do que será discutido em detalhe no workshop.</p>
+            </div>
+            <div className="ws-charts">
+              <div className="ws-chart reveal">
+                <h3>Escore de cálcio coronariano (Agatston)</h3>
+                <p className="ws-chart-sub">Faixas usuais de calcificação na prática clínica</p>
+                <div className="ws-cacs" role="img"
+                     aria-label={"Escala do escore de cálcio: " + CACS_FAIXAS.map(f => f.faixa + " " + f.nome).join(", ") + ". Caso da galeria: " + CACS_EXEMPLO + ", faixa moderada."}>
+                  <div className="ws-cacs-bar">
+                    {CACS_FAIXAS.map(f => <span key={f.faixa}/>)}
+                  </div>
+                  <div className="ws-cacs-mark" style={{ "--x": cacsPos(CACS_EXEMPLO) + "%" }}>
+                    <span>Caso da galeria · {CACS_EXEMPLO}</span>
+                  </div>
+                  <div className="ws-cacs-legend">
+                    {CACS_FAIXAS.map(f => (
+                      <span key={f.faixa}><b>{f.faixa}</b>{f.nome}</span>
+                    ))}
+                  </div>
+                </div>
+                <p className="ws-chart-nota">
+                  Escore zero se associa a risco muito baixo de eventos coronarianos; valores mais
+                  altos reclassificam o paciente para cima — o tema do segundo bloco do workshop.
+                </p>
+              </div>
+
+              <div className="ws-chart reveal">
+                <h3>TC × RM cardíaca</h3>
+                <p className="ws-chart-sub">Força relativa de cada método — comparação didática simplificada</p>
+                <table className="ws-mat">
+                  <thead>
+                    <tr><th scope="col">Aplicação</th><th scope="col">TC</th><th scope="col">RM</th></tr>
+                  </thead>
+                  <tbody>
+                    {METODOS.map(([nome, tc, rm]) => (
+                      <tr key={nome}>
+                        <th scope="row">{nome}</th>
+                        {[tc, rm].map((v, i) => (
+                          <td key={i} aria-label={v + " de 3"}>
+                            <span className="ws-dots">
+                              {[1, 2, 3].map(n => <i key={n} className={n <= v ? "on" : ""}/>)}
+                            </span>
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -289,11 +445,11 @@ function WorkshopStyles() {
       .ws-cv svg { flex: none; color: var(--ms-green-600); margin-top: 1px; }
 
       .ws-info {
-        display: flex; flex-wrap: wrap; gap: 0; margin-bottom: 36px;
+        display: grid; grid-template-columns: auto 1fr; margin-bottom: 36px;
         border-top: 1px solid rgba(255,255,255,0.12); border-bottom: 1px solid rgba(255,255,255,0.12);
       }
-      .ws-info-item { display: flex; gap: 14px; align-items: flex-start; padding: 18px 28px 18px 0; color: var(--ms-green-400); }
-      .ws-info-item + .ws-info-item { padding-left: 28px; border-left: 1px solid rgba(255,255,255,0.12); }
+      .ws-info-item { display: flex; gap: 14px; align-items: flex-start; padding: 18px 24px 18px 0; color: var(--ms-green-400); }
+      .ws-info-item + .ws-info-item { padding-left: 24px; border-left: 1px solid rgba(255,255,255,0.12); }
       .ws-info-item strong { display: block; color: #fff; font-size: 18px; }
       .ws-info-item small { color: rgba(232,240,245,0.7); font-size: 14px; }
 
@@ -321,6 +477,101 @@ function WorkshopStyles() {
         box-shadow: 0 40px 80px rgba(0,0,0,0.45), 0 0 0 10px rgba(255,255,255,0.03);
       }
       .ws-ecg { position: absolute; left: 0; right: 0; bottom: 18px; width: 100%; height: 48px; color: rgba(126,195,101,0.35); }
+
+      .ws-count {
+        display: inline-block; margin: 0 0 22px 10px; padding: 7px 16px; border-radius: 999px;
+        font-size: 13px; font-weight: 700; color: #fff; background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.14);
+      }
+      .ws-count b { color: var(--ms-green-400); font-size: 15px; }
+
+      /* Galeria: fundo preto nas imagens, que já são de fundo preto — o "contain" fica sem emenda. */
+      .ws-gal {
+        color: var(--ink); padding: 96px 0;
+        background: radial-gradient(60% 50% at 100% 0%, rgba(77,133,164,0.28), transparent 70%), #081822;
+      }
+      .ws-gal h2 { color: #fff; }
+      .ws-gal .ws-sub { color: rgba(232,240,245,0.75); }
+      .ws-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: auto; gap: 20px; }
+      .ws-g-wide { grid-column: 1 / 3; }
+      .ws-g-tall { grid-column: 3; grid-row: 1 / 3; }
+      .ws-fig {
+        margin: 0; display: flex; flex-direction: column; overflow: hidden; border-radius: 20px;
+        background: #000; border: 1px solid rgba(255,255,255,0.1);
+      }
+      .ws-fig-img { flex: 1; min-height: 240px; display: grid; place-items: center; overflow: hidden; }
+      .ws-fig-img img {
+        display: block; width: 100%; height: 100%; max-height: 420px; object-fit: contain;
+        transition: transform 600ms var(--ease-out);
+      }
+      .ws-g-tall .ws-fig-img img { max-height: 640px; }
+      .ws-fig:hover .ws-fig-img img { transform: scale(1.04); }
+      .ws-fig figcaption {
+        padding: 18px 22px 20px; border-top: 1px solid rgba(255,255,255,0.08);
+        background: linear-gradient(180deg, rgba(13,34,48,0.6), rgba(13,34,48,0.95));
+      }
+      .ws-fig small {
+        display: block; font-size: 11px; font-weight: 800; letter-spacing: 0.16em;
+        text-transform: uppercase; color: var(--ms-green-400);
+      }
+      .ws-fig strong { display: block; color: #fff; font-size: 18px; margin: 4px 0 6px; }
+      .ws-fig figcaption > span { display: block; font-size: 14px; line-height: 1.5; color: rgba(232,240,245,0.75); }
+      .ws-fig figcaption a { display: inline-block; margin-top: 10px; font-size: 12px; color: rgba(232,240,245,0.5); }
+      .ws-fig figcaption a:hover { color: var(--ms-green-300); }
+      .ws-nota { margin: 24px 0 0; font-size: 13px; color: rgba(232,240,245,0.55); }
+
+      /* Gráficos */
+      .ws-charts { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+      .ws-chart {
+        background: #fff; border: 1px solid var(--border-subtle); border-radius: 20px;
+        padding: 32px; box-shadow: var(--sh-sm);
+      }
+      .ws-chart h3 { font-size: 20px; margin: 0 0 4px; }
+      .ws-chart-sub { font-size: 14px; color: var(--fg-muted); margin: 0 0 28px; }
+      .ws-chart-nota { margin: 28px 0 0; padding-top: 20px; border-top: 1px solid var(--border-subtle); font-size: 15px; color: var(--fg-muted); }
+
+      .ws-cacs { position: relative; padding-top: 52px; }
+      .ws-cacs-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; height: 18px; }
+      .ws-cacs-bar span:nth-child(1) { background: var(--ms-green-500); border-radius: 999px 0 0 999px; }
+      .ws-cacs-bar span:nth-child(2) { background: #e3c84a; }
+      .ws-cacs-bar span:nth-child(3) { background: #e8923b; }
+      .ws-cacs-bar span:nth-child(4) { background: var(--ms-danger); border-radius: 0 999px 999px 0; }
+      .ws-cacs-mark {
+        position: absolute; top: 0; height: 70px; left: 0; width: 2px; background: var(--ms-blue-800);
+        transition: left 1.2s var(--ease-out) 0.2s;
+      }
+      .reveal.in .ws-cacs-mark { left: var(--x); }
+      .ws-cacs-mark::after {
+        content: ""; position: absolute; top: 54px; left: -6px; width: 14px; height: 14px;
+        border-radius: 50%; background: #fff; border: 3px solid var(--ms-blue-800);
+      }
+      .ws-cacs-mark span {
+        position: absolute; top: 0; left: 50%; transform: translateX(-50%); white-space: nowrap;
+        font-size: 12px; font-weight: 800; color: #fff; background: var(--ms-blue-800);
+        padding: 5px 10px; border-radius: 8px;
+      }
+      .ws-cacs-legend { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 14px; }
+      .ws-cacs-legend span { font-size: 13px; color: var(--fg-muted); text-align: center; }
+      .ws-cacs-legend b { display: block; font-size: 16px; color: var(--fg-strong); }
+
+      .ws-mat { width: 100%; border-collapse: collapse; }
+      .ws-mat th, .ws-mat td { padding: 11px 0; border-bottom: 1px solid var(--border-subtle); text-align: left; }
+      .ws-mat tr:last-child th, .ws-mat tr:last-child td { border-bottom: 0; }
+      .ws-mat thead th {
+        font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-faint);
+      }
+      .ws-mat thead th + th { color: var(--ms-blue-500); text-align: center; width: 76px; }
+      .ws-mat tbody th { font-size: 15px; font-weight: 600; color: var(--fg-default); padding-right: 12px; }
+      .ws-mat td { text-align: center; }
+      .ws-dots { display: inline-flex; gap: 5px; }
+      .ws-dots i { width: 12px; height: 12px; border-radius: 50%; background: var(--ms-neutral-200); }
+      .ws-dots i.on { background: var(--ms-blue-500); transform: scale(0); transition: transform 400ms var(--ease-out); }
+      .reveal.in .ws-dots i.on { transform: scale(1); }
+      .reveal.in tr:nth-child(2) .ws-dots i.on { transition-delay: 80ms; }
+      .reveal.in tr:nth-child(3) .ws-dots i.on { transition-delay: 160ms; }
+      .reveal.in tr:nth-child(4) .ws-dots i.on { transition-delay: 240ms; }
+      .reveal.in tr:nth-child(5) .ws-dots i.on { transition-delay: 320ms; }
+      .ws-mat td + td .ws-dots i.on { background: var(--ms-green-600); }
 
       .ws-sec { padding: 96px 0; background: var(--bg-page); }
       .ws-sec-alt { background: #fff; }
@@ -361,16 +612,28 @@ function WorkshopStyles() {
         .ws-hero-grid, .ws-temas-grid, .ws-bio { grid-template-columns: 1fr; gap: 40px; }
         .ws-bio-foto { max-width: 360px; margin: 0 auto; }
         .ws-poster { justify-self: center; max-width: 340px; }
-        .ws-pilares { grid-template-columns: 1fr; }
+        .ws-pilares, .ws-charts { grid-template-columns: 1fr; }
+        .ws-grid { grid-template-columns: 1fr 1fr; }
+        .ws-g-wide { grid-column: 1 / -1; }
+        .ws-g-tall { grid-column: auto; grid-row: auto; }
+        .ws-gal { padding: 64px 0; }
+        .ws-chart { padding: 24px; }
         .ws-sec, .ws-final { padding: 64px 0; }
         .ws-head { margin-bottom: 32px; }
       }
       @media (max-width: 560px) {
-        .ws-info-item { padding-right: 0; width: 100%; }
+        .ws-info { grid-template-columns: 1fr; }
+        .ws-info-item { padding-right: 0; }
         .ws-info-item + .ws-info-item { padding-left: 0; border-left: 0; border-top: 1px solid rgba(255,255,255,0.12); }
         .ws-btn { width: 100%; justify-content: center; }
+        .ws-grid { grid-template-columns: 1fr; }
+        .ws-count { margin-left: 0; }
+        .ws-cacs-legend span { font-size: 11px; }
+        .ws-cacs-legend b { font-size: 13px; }
       }
-      @media (prefers-reduced-motion: reduce) { .ws-btn { transition: none; } }
+      @media (prefers-reduced-motion: reduce) {
+        .ws-btn, .ws-fig-img img, .ws-cacs-mark, .ws-dots i.on { transition: none !important; }
+      }
     `}</style>
   );
 }

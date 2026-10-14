@@ -54,6 +54,18 @@ const TEMAS = [
   ["RM nas cardiomiopatias", "Caracterização tecidual e realce tardio no diagnóstico diferencial das cardiomiopatias."],
 ];
 
+const PALESTRANTE = {
+  nome: "Dr. Anderson Armstrong",
+  foto: "/assets/dr-anderson-armstrong.jpg",
+  cv: [
+    "Especialista em Cardiologia e Ecocardiografia pela Sociedade Brasileira de Cardiologia (SBC)",
+    "Mestre em Ciências da Saúde pela Universidade de Pernambuco (UPE)",
+    "Doutor em Medicina pela Escola Bahiana de Medicina e Saúde Pública",
+    "Fellow em Imagem Cardiovascular pela Johns Hopkins University",
+    "Professor adjunto e preceptor da Residência de Cardiologia da UNIVASF",
+  ],
+};
+
 function WorkshopPage() {
   return (
     <PageShell active="workshop" hideBubble>
@@ -72,6 +84,16 @@ function WorkshopPage() {
                 Um encontro dedicado à imagem cardiovascular: como tecnologia de ponta
                 e laudo especializado levam a diagnósticos cardiovasculares mais precisos.
               </p>
+
+              <a className="ws-speaker" href="#palestrante">
+                {/* Recorte no rosto via background: a foto original é de meio corpo. */}
+                <span className="ws-speaker-foto" style={{ backgroundImage: "url(" + PALESTRANTE.foto + ")" }} aria-hidden="true"/>
+                <span>
+                  <small>Palestrante</small>
+                  <strong>{PALESTRANTE.nome}</strong>
+                  <span>Cardiologista e ecocardiografista (SBC) · Fellow em imagem cardiovascular pela Johns Hopkins University</span>
+                </span>
+              </a>
 
               <div className="ws-info">
                 <div className="ws-info-item">
@@ -109,6 +131,23 @@ function WorkshopPage() {
             </figure>
           </div>
           <Ecg/>
+        </section>
+
+        {/* ---------- Palestrante ---------- */}
+        <section className="ws-sec ws-sec-alt" id="palestrante">
+          <div className="container ws-bio">
+            <img className="ws-bio-foto" src={PALESTRANTE.foto} width="883" height="1210"
+                 alt={PALESTRANTE.nome + ", cardiologista"} loading="lazy"/>
+            <div>
+              <p className="t-eyebrow">Palestrante</p>
+              <h2>{PALESTRANTE.nome}</h2>
+              <ul className="ws-cv">
+                {PALESTRANTE.cv.map(c => (
+                  <li key={c}><Icon name="check-circle" size={22}/><span>{c}</span></li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </section>
 
         {/* ---------- Proposta ---------- */}
@@ -216,6 +255,39 @@ function WorkshopStyles() {
       }
       .ws-lead { font-size: 19px; line-height: 1.65; color: rgba(232,240,245,0.86); max-width: 560px; margin: 0 0 32px; }
 
+      .ws-speaker {
+        display: flex; align-items: center; gap: 18px; max-width: 560px; margin: 0 0 28px;
+        padding: 14px 22px 14px 14px; border-radius: 20px; text-decoration: none; color: inherit;
+        background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+        transition: background var(--dur-base) var(--ease-out);
+      }
+      .ws-speaker:hover { background: rgba(255,255,255,0.09); text-decoration: none; color: inherit; }
+      .ws-speaker-foto {
+        flex: none; width: 76px; height: 76px; border-radius: 50%;
+        background: #e9eef3 no-repeat 50% 16% / 220% auto;
+        box-shadow: 0 0 0 3px var(--ms-green-500);
+      }
+      .ws-speaker small {
+        display: block; font-size: 11px; font-weight: 800; letter-spacing: 0.16em;
+        text-transform: uppercase; color: var(--ms-green-400);
+      }
+      .ws-speaker strong { display: block; color: #fff; font-size: 19px; margin: 2px 0 3px; }
+      .ws-speaker span span { display: block; font-size: 14px; line-height: 1.45; color: rgba(232,240,245,0.75); }
+
+      .ws-bio { display: grid; grid-template-columns: 0.75fr 1.25fr; gap: 64px; align-items: center; }
+      .ws-bio-foto {
+        display: block; width: 100%; height: auto; border-radius: 24px;
+        background: #e9eef3; box-shadow: var(--sh-lg);
+      }
+      .ws-bio h2 { margin: 10px 0 24px; }
+      .ws-cv { list-style: none; margin: 0; padding: 0; }
+      .ws-cv li {
+        display: flex; gap: 14px; align-items: flex-start; padding: 14px 0;
+        border-bottom: 1px solid var(--border-subtle); font-size: 17px; color: var(--fg-default);
+      }
+      .ws-cv li:last-child { border-bottom: 0; }
+      .ws-cv svg { flex: none; color: var(--ms-green-600); margin-top: 1px; }
+
       .ws-info {
         display: flex; flex-wrap: wrap; gap: 0; margin-bottom: 36px;
         border-top: 1px solid rgba(255,255,255,0.12); border-bottom: 1px solid rgba(255,255,255,0.12);
@@ -286,7 +358,8 @@ function WorkshopStyles() {
 
       @media (max-width: 900px) {
         .ws-hero { padding: 48px 0 80px; }
-        .ws-hero-grid, .ws-temas-grid { grid-template-columns: 1fr; gap: 40px; }
+        .ws-hero-grid, .ws-temas-grid, .ws-bio { grid-template-columns: 1fr; gap: 40px; }
+        .ws-bio-foto { max-width: 360px; margin: 0 auto; }
         .ws-poster { justify-self: center; max-width: 340px; }
         .ws-pilares { grid-template-columns: 1fr; }
         .ws-sec, .ws-final { padding: 64px 0; }

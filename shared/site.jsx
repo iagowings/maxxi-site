@@ -111,19 +111,18 @@ function Footer() {
     <footer style={{
       background: "var(--ms-blue-800)",
       color: "rgba(255,255,255,0.86)",
-      padding: "72px 0 32px",
       marginTop: 96,
     }}>
+      <div style={{ background: "var(--ms-neutral-100)", padding: "72px 0 56px" }}>
       <div className="container" style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr 1fr", gap: 48 }}>
         <div>
           {/* width/height explicitos + maxWidth: o PNG tem largura grande e, so com
               height:80, renderizaria mais largo que a tela e empurraria a pagina toda.
-              logo-fundoazul.png ja vem com contorno branco pensado pra fundo escuro,
-              por isso sem o filter brightness(0) invert(1) que a versao antiga usava. */}
-          <img src="/assets/logo-fundoazul.png" alt="Maxxi Saúde — 10 anos"
-               width="418" height="80"
+              logo-10-anos.png e a versao colorida, pra fundo claro. */}
+          <img src="/assets/logo-10-anos.png" alt="Maxxi Saúde — 10 anos"
+               width="418" height="82"
                style={{ width: 418, height: "auto", maxWidth: "100%", marginBottom: 20 }}/>
-          <p style={{ color: "rgba(255,255,255,0.74)", fontSize: 14, lineHeight: 1.6, maxWidth: 320 }}>
+          <p style={{ color: "var(--fg-default)", fontSize: 14, lineHeight: 1.6, maxWidth: 320 }}>
             Referência em diagnóstico por imagem e análises clínicas em Altamira / PA.
             Atendimento humanizado, há mais de 10 anos cuidando do Xingu.
           </p>
@@ -142,7 +141,7 @@ function Footer() {
         </div>
 
         <div>
-          <h6 style={{ color: "#fff", fontSize: 13, letterSpacing: "0.12em", marginBottom: 16 }}>Navegação</h6>
+          <h6 style={{ color: "var(--fg-strong)", fontSize: 13, letterSpacing: "0.12em", marginBottom: 16 }}>Navegação</h6>
           <FooterLinks items={[
             ["/", "Início"],
             ["/especialidades/", "Especialidades"],
@@ -154,7 +153,7 @@ function Footer() {
         </div>
 
         <div>
-          <h6 style={{ color: "#fff", fontSize: 13, letterSpacing: "0.12em", marginBottom: 16 }}>Para você</h6>
+          <h6 style={{ color: "var(--fg-strong)", fontSize: 13, letterSpacing: "0.12em", marginBottom: 16 }}>Para você</h6>
           <FooterLinks items={[
             ["/resultados/", "Resultados online"],
             ["/agendar-exame/", "Agendar exame"],
@@ -165,16 +164,16 @@ function Footer() {
         </div>
 
         <div>
-          <h6 style={{ color: "#fff", fontSize: 13, letterSpacing: "0.12em", marginBottom: 16 }}>Atendimento</h6>
-          <p style={{ color: "rgba(255,255,255,0.78)", fontSize: 14, margin: "0 0 8px" }}>
+          <h6 style={{ color: "var(--fg-strong)", fontSize: 13, letterSpacing: "0.12em", marginBottom: 16 }}>Atendimento</h6>
+          <p style={{ color: "var(--fg-default)", fontSize: 14, margin: "0 0 8px" }}>
             <Icon name="map-pin" size={14} style={{ verticalAlign: "-2px", marginRight: 6 }}/>
             Tv. Coronel Tancredo, 45 &middot; Centro &middot; Altamira / PA
           </p>
-          <p style={{ color: "rgba(255,255,255,0.78)", fontSize: 14, margin: "0 0 8px" }}>
+          <p style={{ color: "var(--fg-default)", fontSize: 14, margin: "0 0 8px" }}>
             <Icon name="clock" size={14} style={{ verticalAlign: "-2px", marginRight: 6 }}/>
             Seg–Sáb · 7h às 19h
           </p>
-          <p style={{ color: "rgba(255,255,255,0.78)", fontSize: 14, margin: "0 0 8px" }}>
+          <p style={{ color: "var(--fg-default)", fontSize: 14, margin: "0 0 8px" }}>
             <Icon name="whatsapp" size={14} style={{ verticalAlign: "-2px", marginRight: 6 }}/>
             (93) 99180-5990
           </p>
@@ -183,9 +182,11 @@ function Footer() {
           </div>
         </div>
       </div>
+      </div>
 
+      <div style={{ padding: "28px 0 32px" }}>
       <div className="container" style={{
-        marginTop: 56, paddingTop: 28, borderTop: "1px solid rgba(255,255,255,0.10)",
+        marginTop: 0, paddingTop: 0,
         display: "flex", justifyContent: "space-between", alignItems: "center",
         fontSize: 12, color: "rgba(255,255,255,0.55)", flexWrap: "wrap", gap: 16,
       }}>
@@ -210,6 +211,7 @@ function Footer() {
           resultados variam de paciente para paciente.
         </span>
       </div>
+      </div>
 
       <style>{`
         @media (max-width: 920px) {
@@ -228,9 +230,9 @@ function FooterLinks({ items }) {
     <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
       {items.map(([href, label]) => (
         <li key={href}>
-          <a href={href} style={{ color: "rgba(255,255,255,0.78)", textDecoration: "none", fontSize: 14, transition: "color var(--dur-fast)" }}
-             onMouseEnter={e => e.currentTarget.style.color = "#fff"}
-             onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.78)"}>
+          <a href={href} style={{ color: "var(--fg-default)", textDecoration: "none", fontSize: 14, transition: "color var(--dur-fast)" }}
+             onMouseEnter={e => e.currentTarget.style.color = "var(--ms-blue-600)"}
+             onMouseLeave={e => e.currentTarget.style.color = "var(--fg-default)"}>
             {label}
           </a>
         </li>
@@ -242,7 +244,7 @@ function FooterLinks({ items }) {
 function socialIconStyle(bg) {
   return {
     width: 38, height: 38, borderRadius: "50%",
-    background: bg || "rgba(255,255,255,0.08)",
+    background: bg || "var(--ms-blue-800)",
     color: "#fff",
     display: "inline-flex", alignItems: "center", justifyContent: "center",
     textDecoration: "none",

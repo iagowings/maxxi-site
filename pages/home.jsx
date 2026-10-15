@@ -30,7 +30,7 @@ function HomeHero() {
             color: "var(--fg-strong)", margin: "22px 0 22px",
           }}>
             Consulta e exame<br />
-            <span style={{ color: "var(--site-accent-500)" }}>aqui em Altamira</span>.
+            <span style={{ color: "var(--site-accent-700)" }}>aqui em Altamira</span>.
           </h1>
           <p style={{ fontSize: 20, color: "var(--fg-default)", lineHeight: 1.5, maxWidth: 540, marginBottom: 32 }}>
             Você não precisa mais viajar para fazer exame. A gente marca pelo
@@ -55,6 +55,8 @@ function HomeHero() {
             background: "var(--ms-blue-700)",
           }}>
             <img src="/assets/hero-home.jpg" alt="Interior da clínica Maxxi Saúde em Altamira"
+              srcSet="/assets/hero-home-800.jpg 800w, /assets/hero-home.jpg 1200w"
+              sizes="(max-width: 500px) calc(100vw - 40px), (max-width: 980px) 460px, 500px" width="1200" height="1500" fetchpriority="high"
               style={{
                 position: "absolute", inset: 0,
                 width: "100%", height: "100%",
@@ -77,7 +79,7 @@ function HomeHero() {
             {/* Top-left badge */}
             <img src="/assets/logo-mark.png" alt=""
               style={{
-                position: "absolute", left: 20, top: 20, width: 56, height: 56, borderRadius: 14,
+                position: "absolute", left: 20, top: 20, width: 56, height: 56, borderRadius: 14, objectFit: "contain",
                 background: "#fff", padding: 6, boxShadow: "var(--sh-md)"
               }} />
           </div>
@@ -102,7 +104,7 @@ function HomeHero() {
               <Icon name="scan-line" size={24} />
             </div>
             <div>
-              <div style={{ fontSize: 11, fontWeight: 800, color: "var(--site-accent-700)", letterSpacing: "0.1em", textTransform: "uppercase" }}>Novidade · única na região</div>
+              <div style={{ fontSize: 11, fontWeight: 800, color: "var(--site-accent-800)", letterSpacing: "0.1em", textTransform: "uppercase" }}>Novidade · única na região</div>
               <div style={{ fontSize: 14.5, fontWeight: 800, color: "var(--fg-strong)", marginTop: 2 }}>Tomografia de 128 canais</div>
             </div>
           </div>
@@ -160,7 +162,7 @@ function Tom128Strip() {
           <div style={{
             display: "inline-flex", alignItems: "center", gap: 8,
             padding: "8px 14px", borderRadius: 999,
-            background: "var(--site-accent-500)", color: "#fff",
+            background: "var(--site-accent-500)", color: "var(--on-accent)",
             fontSize: 12, fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase",
             marginBottom: 22,
           }}>
@@ -201,6 +203,8 @@ function Tom128Strip() {
 
         <div style={{ position: "relative", aspectRatio: "1/1" }}>
           <img src="/assets/tomografia-128-canais.jpg" alt="Paciente em exame no tomógrafo de 128 canais da Maxxi Saúde"
+            srcSet="/assets/tomografia-128-canais-768.jpg 768w, /assets/tomografia-128-canais.jpg 1536w"
+            sizes="(max-width: 980px) 420px, 480px"
             width="1536" height="1024" loading="lazy"
             style={{
               position: "absolute", inset: 18, width: "calc(100% - 36px)", height: "calc(100% - 36px)",
@@ -242,7 +246,7 @@ function SpecialtiesPreview() {
           <div style={{ maxWidth: 640 }}>
             <Eyebrow>Especialidades</Eyebrow>
             <h2 style={{ fontSize: 44, fontWeight: 800, letterSpacing: "-0.025em", color: "var(--fg-strong)", lineHeight: 1.08, margin: 0 }}>
-              12 especialidades. Cada uma com <span style={{ color: "var(--site-accent-600)" }}>um WhatsApp direto</span>.
+              12 especialidades. Cada uma com <span style={{ color: "var(--site-accent-700)" }}>um WhatsApp direto</span>.
             </h2>
             <p style={{ fontSize: 18, color: "var(--fg-muted)", marginTop: 18, lineHeight: 1.55 }}>
               Você fala com a equipe certa já na primeira mensagem. Sem central de atendimento, sem esperar na linha.
@@ -483,4 +487,4 @@ function HomePage() {
     </PageShell>
   );
 }
-ReactDOM.createRoot(document.getElementById("root")).render(<HomePage />);
+renderPage(<HomePage />);

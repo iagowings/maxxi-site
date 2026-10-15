@@ -411,4 +411,4 @@ function EstiloDaPagina() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<TecnologiaPage/>);
+renderPage(<TecnologiaPage/>);

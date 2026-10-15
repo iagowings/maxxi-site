@@ -75,4 +75,4 @@ function LegalPage() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<LegalPage/>);
+renderPage(<LegalPage/>);

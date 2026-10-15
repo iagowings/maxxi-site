@@ -15,7 +15,7 @@ function EspecialidadesPage() {
             <Eyebrow>Especialidades</Eyebrow>
             <h1 style={{ fontSize: 60, fontWeight: 900, color: "var(--fg-strong)", letterSpacing: "-0.035em", lineHeight: 1.05, margin: "8px 0 18px" }}>
               12 especialidades. Cada uma com<br/>
-              <span style={{ color: "var(--site-accent-600)" }}>um canal direto pra você.</span>
+              <span style={{ color: "var(--site-accent-700)" }}>um canal direto pra você.</span>
             </h1>
             <p style={{ fontSize: 19, color: "var(--fg-default)", lineHeight: 1.55, maxWidth: 720, margin: 0 }}>
               Aqui você encontra ginecologista, pediatra, cardiologista, dentista e mais.
@@ -85,6 +85,7 @@ function EspecialidadesPage() {
         {/* Grid */}
         <section className="section-pad-sm">
           <div className="container">
+            <h2 className="sr-only">Lista de especialidades</h2>
             <SpecialtiesGrid filter={filter} search={search}/>
 
             <div style={{
@@ -113,4 +114,4 @@ function EspecialidadesPage() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<EspecialidadesPage/>);
+renderPage(<EspecialidadesPage/>);

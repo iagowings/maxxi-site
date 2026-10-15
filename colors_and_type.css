@@ -4,7 +4,15 @@
    Import this once at the top of any page.
    ============================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&family=Nunito:wght@400;500;600;700;800&display=swap');
+/* Mulish variavel (300-900), subset latin — cobre o portugues. Auto-hospedada:
+   o @import do Google Fonts era uma cadeia de 3 requisicoes bloqueando a pintura. */
+@font-face {
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url(/assets/fonts/mulish-latin.woff2) format('woff2');
+}
 
 :root {
   /* ---------- Brand colors ---------- */
@@ -74,7 +82,7 @@
   --border-brand:  var(--ms-blue-200);
 
   /* ---------- Typography ---------- */
-  --font-sans:    'Mulish', 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-sans:    'Mulish', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-display: 'Mulish', system-ui, sans-serif;
   --font-mono:    ui-monospace, 'SF Mono', Menlo, monospace;
 
@@ -206,5 +214,5 @@ code, kbd, samp { font-family: var(--font-mono); font-size: 0.9em; }
   font-weight: var(--fw-bold);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ms-green-700);
+  color: var(--ms-green-800); /* 700 da 3.6:1 em texto de 12px; 800 passa AA */
 }

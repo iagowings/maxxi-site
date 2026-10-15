@@ -188,7 +188,7 @@ function WorkshopPage() {
             <figure className="ws-poster">
               {/* Muted é obrigatório para o autoplay funcionar; os controles deixam ligar o som.
                   Com "reduzir movimento" ativo no sistema, não toca sozinho. */}
-              <video src="/assets/ultimoevento.mp4" poster="/assets/workshop-cardiovascular.jpg"
+              <video src="/assets/ultimoevento.mp4" poster="/assets/workshop-cardiovascular-680.jpg"
                      width="720" height="1280" muted loop playsInline controls preload="metadata"
                      ref={v => { if (v && !matchMedia("(prefers-reduced-motion: reduce)").matches) v.play().catch(() => {}); }}
                      aria-label="Vídeo da 1ª edição do Workshop Médico da Maxxi Saúde"/>
@@ -635,4 +635,4 @@ function WorkshopStyles() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<WorkshopPage/>);
+renderPage(<WorkshopPage/>);

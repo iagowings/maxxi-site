@@ -9,7 +9,7 @@ function SobrePage() {
             <div>
               <Eyebrow color="blue">A clínica</Eyebrow>
               <h1 style={{ fontSize: 64, fontWeight: 900, color: "var(--fg-strong)", letterSpacing: "-0.035em", lineHeight: 1.04, margin: "8px 0 22px" }}>
-                Há <span style={{ color: "var(--site-accent-600)" }}>mais de 10 anos</span><br/>
+                Há <span style={{ color: "var(--site-accent-700)" }}>mais de 10 anos</span><br/>
                 cuidando do Xingu.
               </h1>
               <p style={{ fontSize: 19, color: "var(--fg-default)", lineHeight: 1.6, maxWidth: 560, margin: "0 0 18px" }}>
@@ -36,8 +36,8 @@ function SobrePage() {
                   <circle cx="200" cy="200" r="120" fill="none" stroke="#fff" strokeWidth="1.5"/>
                   <circle cx="200" cy="200" r="170" fill="none" stroke="#fff" strokeWidth="1"/>
                 </svg>
-                <img src="/assets/logo-10-anos.png" alt="10 anos Maxxi Saúde"
-                     style={{ position: "absolute", inset: 0, margin: "auto", width: "70%", filter: "brightness(0) invert(1)" }}/>
+                <img src="/assets/logo-10-anos-836.png" alt="10 anos Maxxi Saúde" width="836" height="160"
+                     style={{ position: "absolute", inset: 0, margin: "auto", width: "70%", height: "auto", filter: "brightness(0) invert(1)" }}/>
               </div>
             </div>
           </div>
@@ -99,7 +99,7 @@ function SobrePage() {
                     background: "#fff", border: "3px solid var(--site-accent-500)",
                     boxShadow: "var(--sh-xs)",
                   }}/>
-                  <div style={{ fontSize: 13, fontWeight: 800, color: "var(--site-accent-700)", letterSpacing: "0.1em" }}>{year}</div>
+                  <div style={{ fontSize: 13, fontWeight: 800, color: "var(--site-accent-800)", letterSpacing: "0.1em" }}>{year}</div>
                   <div style={{ fontSize: 21, fontWeight: 800, color: "var(--fg-strong)", margin: "4px 0 6px", letterSpacing: "-0.01em" }}>{title}</div>
                   <p style={{ fontSize: 15, color: "var(--fg-muted)", lineHeight: 1.55, margin: 0, maxWidth: 720 }}>{body}</p>
                 </div>
@@ -145,4 +145,4 @@ function SobrePage() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<SobrePage/>);
+renderPage(<SobrePage/>);

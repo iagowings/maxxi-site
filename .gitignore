@@ -9,12 +9,10 @@ desktop.ini
 *.swp
 *.swo
 
-# Node — only used inside _build/ for the optional Babel check
+# Node — usado pelo _build/ (compila o JSX e pre-renderiza as paginas)
 node_modules/
-package-lock.json
+/package-lock.json
 _build/node_modules/
-_build/package.json
-_build/package-lock.json
 _build/check.js
 _build/_check/
 

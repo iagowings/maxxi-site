@@ -98,4 +98,4 @@ function BlogPostPage() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<BlogPostPage/>);
+renderPage(<BlogPostPage/>);

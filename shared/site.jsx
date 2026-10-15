@@ -37,7 +37,7 @@ function Header({ active = "home" }) {
       }}>
       <div className="container" style={{ height: 76, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24 }}>
         <a href="/" style={{ display: "inline-flex", alignItems: "center", textDecoration: "none" }}>
-          <img src="/assets/logo-primary.png" alt="Maxxi Saúde" style={{ height: 40 }}/>
+          <img src="/assets/logo-primary.png" alt="Maxxi Saúde" width="165" height="40" style={{ height: 40, width: "auto" }}/>
         </a>
 
         <nav style={{ display: "flex", alignItems: "center", gap: 28 }} className="nav-desktop">
@@ -119,8 +119,8 @@ function Footer() {
           {/* width/height explicitos + maxWidth: o PNG tem largura grande e, so com
               height:80, renderizaria mais largo que a tela e empurraria a pagina toda.
               logo-10-anos.png e a versao colorida, pra fundo claro. */}
-          <img src="/assets/logo-10-anos.png" alt="Maxxi Saúde — 10 anos"
-               width="418" height="82"
+          <img src="/assets/logo-10-anos-836.png" alt="Maxxi Saúde — 10 anos" loading="lazy"
+               width="418" height="80"
                style={{ width: 418, height: "auto", maxWidth: "100%", marginBottom: 20 }}/>
           <p style={{ color: "var(--fg-default)", fontSize: 14, lineHeight: 1.6, maxWidth: 320 }}>
             Referência em diagnóstico por imagem e análises clínicas em Altamira / PA.
@@ -141,7 +141,7 @@ function Footer() {
         </div>
 
         <div>
-          <h6 style={{ color: "var(--fg-strong)", fontSize: 13, letterSpacing: "0.12em", marginBottom: 16 }}>Navegação</h6>
+          <h2 className="footer-h" style={{ color: "var(--fg-strong)", fontSize: 13, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 16 }}>Navegação</h2>
           <FooterLinks items={[
             ["/", "Início"],
             ["/especialidades/", "Especialidades"],
@@ -153,7 +153,7 @@ function Footer() {
         </div>
 
         <div>
-          <h6 style={{ color: "var(--fg-strong)", fontSize: 13, letterSpacing: "0.12em", marginBottom: 16 }}>Para você</h6>
+          <h2 className="footer-h" style={{ color: "var(--fg-strong)", fontSize: 13, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 16 }}>Para você</h2>
           <FooterLinks items={[
             ["/resultados/", "Resultados online"],
             ["/agendar-exame/", "Agendar exame"],
@@ -164,7 +164,7 @@ function Footer() {
         </div>
 
         <div>
-          <h6 style={{ color: "var(--fg-strong)", fontSize: 13, letterSpacing: "0.12em", marginBottom: 16 }}>Atendimento</h6>
+          <h2 className="footer-h" style={{ color: "var(--fg-strong)", fontSize: 13, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 16 }}>Atendimento</h2>
           <p style={{ color: "var(--fg-default)", fontSize: 14, margin: "0 0 8px" }}>
             <Icon name="map-pin" size={14} style={{ verticalAlign: "-2px", marginRight: 6 }}/>
             Tv. Coronel Tancredo, 45 &middot; Centro &middot; Altamira / PA
@@ -205,7 +205,7 @@ function Footer() {
         ].map(([href, label]) => (
           <a key={href} href={href} style={{ color: "rgba(255,255,255,0.72)", textDecoration: "underline" }}>{label}</a>
         ))}
-        <span style={{ flexBasis: "100%", lineHeight: 1.5, marginTop: 8, color: "rgba(255,255,255,0.45)" }}>
+        <span style={{ flexBasis: "100%", lineHeight: 1.5, marginTop: 8, color: "rgba(255,255,255,0.72)" }}>
           O conteúdo deste site é informativo e não substitui consulta, diagnóstico ou
           tratamento médico. Exames são realizados mediante solicitação médica e os
           resultados variam de paciente para paciente.
@@ -214,6 +214,7 @@ function Footer() {
       </div>
 
       <style>{`
+        footer h2.footer-h { font-size: 13px !important; }
         @media (max-width: 920px) {
           footer .container { grid-template-columns: 1fr 1fr !important; }
         }
@@ -305,7 +306,7 @@ function WhatsAppBubble() {
         }}>
           <div style={{ background: "#075E54", color: "#fff", padding: "16px 20px", display: "flex", alignItems: "center", gap: 12 }}>
             <div style={{ width: 40, height: 40, borderRadius: 8, background: "#fff", display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
-              <img src="/assets/logo-mark.png" alt="" style={{ width: 32, height: 32 }}/>
+              <img src="/assets/logo-mark.png" alt="" width="32" height="32" style={{ width: 32, height: 32, objectFit: "contain" }}/>
             </div>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 14, fontWeight: 700 }}>Maxxi Saúde</div>
@@ -396,4 +397,15 @@ function PageShell({ active, children, hideBubble }) {
   );
 }
 
-Object.assign(window, { Header, Footer, WhatsAppBubble, PageShell });
+/* O HTML de cada pagina ja vem pre-renderizado (_build/build.mjs) com as
+   preferencias padrao. Hidratar reaproveita esse DOM — a foto do topo nao e
+   recriada e aparece antes. Quem salvou "letra maior" ou tweaks ve outra
+   pagina: renderiza do zero. */
+function renderPage(app) {
+  const el = document.getElementById("root");
+  const padrao = !lerPreferenciaLetra() && JSON.stringify(readTweaks()) === JSON.stringify(TWEAK_DEFAULTS);
+  if (padrao) ReactDOM.hydrateRoot(el, app, { onRecoverableError: () => {} });
+  else ReactDOM.createRoot(el).render(app);
+}
+
+Object.assign(window, { Header, Footer, WhatsAppBubble, PageShell, renderPage });

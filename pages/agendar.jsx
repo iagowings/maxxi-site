@@ -281,4 +281,4 @@ function EstiloDaPagina() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<AgendarPage/>);
+renderPage(<AgendarPage/>);

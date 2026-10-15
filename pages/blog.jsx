@@ -41,4 +41,4 @@ function BlogPage() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<BlogPage/>);
+renderPage(<BlogPage/>);

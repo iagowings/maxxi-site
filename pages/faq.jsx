@@ -17,7 +17,7 @@ function FaqPage() {
             <Eyebrow>Dúvidas frequentes</Eyebrow>
             <h1 style={{ fontSize: 60, fontWeight: 900, color: "var(--fg-strong)", letterSpacing: "-0.035em", lineHeight: 1.05, margin: "8px 0 18px" }}>
               Pode perguntar.<br/>
-              <span style={{ color: "var(--site-accent-600)" }}>A gente responde com calma.</span>
+              <span style={{ color: "var(--site-accent-700)" }}>A gente responde com calma.</span>
             </h1>
             <p style={{ fontSize: 19, color: "var(--fg-default)", lineHeight: 1.55, maxWidth: 720, margin: 0 }}>
               Estas são as perguntas que a gente mais ouve. Se a sua não estiver aqui,
@@ -28,6 +28,7 @@ function FaqPage() {
 
         <section className="section-pad-sm">
           <div className="container" style={{ maxWidth: 880 }}>
+            <h2 className="sr-only">Perguntas e respostas</h2>
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {FAQ.map((item, i) => <FaqItem key={i} item={item} defaultOpen={i === 0}/>)}
             </div>
@@ -103,4 +104,4 @@ function FaqItem({ item, defaultOpen }) {
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<FaqPage/>);
+renderPage(<FaqPage/>);

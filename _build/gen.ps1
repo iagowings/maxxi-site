@@ -14,8 +14,7 @@ $tpl = @'
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BCMCHPJ1W4"></script>
+<!-- Google tag (gtag.js): a fila dataLayer nasce aqui; o gtag.js e baixado junto com o resto do JS, depois da 1a pintura (ver loader no fim do head) -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -37,7 +36,7 @@ $tpl = @'
 <meta property="og:url" content="@@CANON@@"/>
 <meta property="og:image" content="@@IMG@@"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<link rel="preconnect" href="https://unpkg.com" crossorigin/>
+<link rel="preload" href="/assets/fonts/mulish-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="preconnect" href="https://connect.facebook.net"/>
 <link rel="icon" type="image/png" href="/assets/logo-mark.png"/>
 <link rel="stylesheet" href="/colors_and_type.css?v=@@V@@"/>
@@ -70,9 +69,27 @@ $tpl = @'
 }
 </script>
 @@LD@@
-<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script>
+// O HTML ja vem pre-renderizado; o JS so liga menu, bolha do WhatsApp etc.
+// Carrega depois da pagina pintada (LCP) e carregada: tira a CPU do React do
+// caminho da foto do topo. Sem suporte a LCP (Safari), so espera o load.
+(function () {
+  var painted = !(window.PerformanceObserver && PerformanceObserver.supportedEntryTypes &&
+                  PerformanceObserver.supportedEntryTypes.indexOf("largest-contentful-paint") >= 0);
+  var loaded = false, started = false;
+  function go() {
+    if (started || !painted || !loaded) return;
+    started = true;
+    ["/dist/vendor/react.production.min.js", "/dist/vendor/react-dom.production.min.js",
+     "/dist/shared.js?v=@@V@@", "/dist@@PAGEJS@@?v=@@V@@", "/shared/consent.js?v=@@V@@",
+     "https://www.googletagmanager.com/gtag/js?id=G-BCMCHPJ1W4"].forEach(function (src) {
+      var s = document.createElement("script"); s.src = src; s.async = false; document.body.appendChild(s);
+    });
+  }
+  if (!painted) new PerformanceObserver(function () { painted = true; go(); }).observe({ type: "largest-contentful-paint", buffered: true });
+  addEventListener("load", function () { loaded = true; go(); });
+})();
+</script>
 </head>
 <body>
 <div id="root"></div>
@@ -87,15 +104,6 @@ $tpl = @'
 </div>
 </noscript>
 @@INLINE@@
-<script type="text/babel" src="/shared/primitives.jsx?v=@@V@@"></script>
-<script type="text/babel" src="/shared/data.jsx?v=@@V@@"></script>
-<script type="text/babel" src="/shared/blog-data.jsx?v=@@V@@"></script>
-<script type="text/babel" src="/shared/tweaks.jsx?v=@@V@@"></script>
-<script type="text/babel" src="/shared/SpecialtyCard.jsx?v=@@V@@"></script>
-<script type="text/babel" src="/shared/acessibilidade.jsx?v=@@V@@"></script>
-<script type="text/babel" src="/shared/site.jsx?v=@@V@@"></script>
-<script type="text/babel" src="@@PAGE@@?v=@@V@@"></script>
-<script src="/shared/consent.js?v=@@V@@" defer></script>
 </body>
 </html>
 '@
@@ -160,7 +168,7 @@ foreach ($p in $pages) {
   $img = "https://www.maxxisaude.com/assets/logo-primary.png"
   if (-not [string]::IsNullOrEmpty($p.image)) { $img = $p.image }
 
-  $html = $tpl.Replace("@@IMG@@", $img).Replace("@@TITLE@@", $p.title).Replace("@@DESC@@", $p.desc).Replace("@@CANON@@", $canon).Replace("@@INLINE@@", $inline).Replace("@@LD@@", $ld).Replace("@@PAGE@@", $p.page).Replace("@@V@@", $ver)
+  $html = $tpl.Replace("@@IMG@@", $img).Replace("@@TITLE@@", $p.title).Replace("@@DESC@@", $p.desc).Replace("@@CANON@@", $canon).Replace("@@INLINE@@", $inline).Replace("@@LD@@", $ld).Replace("@@PAGEJS@@", ($p.page -replace "\.jsx$", ".js")).Replace("@@V@@", $ver)
 
   $out = Join-Path $dir "index.html"
   [System.IO.File]::WriteAllText($out, $html, $utf8)
@@ -168,3 +176,7 @@ foreach ($p in $pages) {
   $count++
 }
 Write-Output ("TOTAL: " + $count + " pages")
+
+# Compila o JSX e pre-renderiza o HTML de cada pagina (ver build.mjs).
+node (Join-Path $PSScriptRoot "build.mjs")
+if ($LASTEXITCODE -ne 0) { throw "build.mjs falhou" }

@@ -1,0 +1,25 @@
+const{useState:useStateE}=React;function EspecialidadesPage(){const[t,r]=useStateE("todas"),[i,o]=useStateE("");return React.createElement(PageShell,{active:"especialidades"},React.createElement("div",{"data-screen-label":"Especialidades"},React.createElement("section",{style:{padding:"72px 0 56px",background:"linear-gradient(180deg, var(--site-accent-50) 0%, transparent 100%)"}},React.createElement("div",{className:"container",style:{maxWidth:920}},React.createElement(Eyebrow,null,"Especialidades"),React.createElement("h1",{style:{fontSize:60,fontWeight:900,color:"var(--fg-strong)",letterSpacing:"-0.035em",lineHeight:1.05,margin:"8px 0 18px"}},"12 especialidades. Cada uma com",React.createElement("br",null),React.createElement("span",{style:{color:"var(--site-accent-700)"}},"um canal direto pra voc\xEA.")),React.createElement("p",{style:{fontSize:19,color:"var(--fg-default)",lineHeight:1.55,maxWidth:720,margin:0}},"Aqui voc\xEA encontra ginecologista, pediatra, cardiologista, dentista e mais. Escolha embaixo o que voc\xEA precisa e fale direto no WhatsApp \u2014 pode mandar \xE1udio."))),React.createElement("section",{id:"filter-bar",style:{position:"sticky",top:76,zIndex:30,background:"rgba(247, 250, 246, 0.92)",backdropFilter:"saturate(180%) blur(8px)",borderTop:"1px solid var(--border-subtle)",borderBottom:"1px solid var(--border-subtle)",padding:"16px 0"}},React.createElement("div",{className:"container filter-bar-row",style:{display:"flex",alignItems:"center",gap:16,flexWrap:"wrap"}},React.createElement("div",{id:"filter-chips",style:{display:"flex",gap:6,flexWrap:"wrap",flex:1,minWidth:0}},CATEGORIES.map(e=>{const a=t===e.id;return React.createElement("button",{key:e.id,onClick:()=>r(e.id),style:{padding:"9px 16px",borderRadius:999,background:a?"var(--ms-blue-700)":"#fff",color:a?"#fff":"var(--fg-default)",border:"1px solid "+(a?"var(--ms-blue-700)":"var(--border-subtle)"),fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:"inherit",whiteSpace:"nowrap",transition:"background 140ms, color 140ms, border-color 140ms"}},e.label)})),React.createElement("div",{id:"filter-search",style:{width:280,maxWidth:"100%"}},React.createElement(Field,{icon:"search",placeholder:"Procure por m\xE9dico, exame ou o que voc\xEA est\xE1 sentindo\u2026",value:i,onChange:o}))),React.createElement("style",null,`
+            @media (max-width: 720px) {
+              #filter-bar { padding: 10px 0 !important; }
+              #filter-bar .filter-bar-row { flex-direction: column !important; align-items: stretch !important; gap: 10px !important; }
+              #filter-chips {
+                flex-wrap: nowrap !important;
+                overflow-x: auto;
+                padding: 2px 20px 6px;
+                margin: 0 -20px;
+                /* Sem largura explicita o align-items:stretch da coluna estica a
+                   faixa ate o conteudo (656px) e o overflow-x nunca entra em acao.
+                   100% + 40px = largura do container mais as margens negativas. */
+                width: calc(100% + 40px);
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+              }
+              #filter-chips::-webkit-scrollbar { display: none; }
+              #filter-chips > button { flex: 0 0 auto; scroll-snap-align: start; }
+              #filter-search { width: 100% !important; }
+              #filter-search input { height: 42px !important; font-size: 14px !important; }
+            }
+          `)),React.createElement("section",{className:"section-pad-sm"},React.createElement("div",{className:"container"},React.createElement("h2",{className:"sr-only"},"Lista de especialidades"),React.createElement(SpecialtiesGrid,{filter:t,search:i}),React.createElement("div",{style:{marginTop:48,padding:28,borderRadius:18,background:"var(--ms-blue-50)",border:"1px solid var(--ms-blue-100)",display:"flex",alignItems:"center",gap:20,flexWrap:"wrap"}},React.createElement(IconCircle,{name:"stethoscope",color:"blue-solid",size:56}),React.createElement("div",{style:{flex:1,minWidth:240}},React.createElement("h3",{style:{fontSize:20,fontWeight:800,color:"var(--fg-strong)",margin:0,letterSpacing:"-0.01em"}},"N\xE3o achou o que procura?"),React.createElement("p",{style:{fontSize:14.5,color:"var(--fg-muted)",margin:"6px 0 0",lineHeight:1.5}},"A gente est\xE1 sempre trazendo m\xE9dicos novos. Manda uma mensagem contando o que voc\xEA precisa \u2014 se a gente n\xE3o tiver, indica quem tem.")),React.createElement(Button,{variant:"secondary",icon:"whatsapp",href:"https://wa.me/"+GENERAL_WHATS+"?text="+encodeURIComponent("Ol\xE1! Procuro um atendimento que n\xE3o vi no site."),target:"_blank"},"Falar com a cl\xEDnica"))))),React.createElement(TweaksPanel,null))}renderPage(React.createElement(EspecialidadesPage,null));

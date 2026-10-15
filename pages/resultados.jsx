@@ -25,7 +25,7 @@ function ResultadosPage() {
               <Badge variant="soft-blue" icon="lock">Seguro · 24 horas</Badge>
               <h1 style={{ fontSize: 60, fontWeight: 900, color: "var(--fg-strong)", letterSpacing: "-0.035em", lineHeight: 1.05, margin: "16px 0 18px" }}>
                 Seu resultado,<br/>
-                <span style={{ color: "var(--site-accent-600)" }}>na hora que precisar.</span>
+                <span style={{ color: "var(--site-accent-700)" }}>na hora que precisar.</span>
               </h1>
               <p style={{ fontSize: 19, color: "var(--fg-default)", lineHeight: 1.55, maxWidth: 540, margin: "0 0 32px" }}>
                 O resultado dos seus exames fica guardado aqui, e você vê pelo celular a
@@ -105,4 +105,4 @@ function ResultadosPage() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<ResultadosPage/>);
+renderPage(<ResultadosPage/>);

@@ -15,7 +15,7 @@ function ContatoPage() {
             <Eyebrow>Contato</Eyebrow>
             <h1 style={{ fontSize: 60, fontWeight: 900, color: "var(--fg-strong)", letterSpacing: "-0.035em", lineHeight: 1.05, margin: "8px 0 18px", maxWidth: 880 }}>
               Fale com a Maxxi Saúde,<br/>
-              <span style={{ color: "var(--site-accent-600)" }}>pelo canal certo.</span>
+              <span style={{ color: "var(--site-accent-700)" }}>pelo canal certo.</span>
             </h1>
             <p style={{ fontSize: 19, color: "var(--fg-default)", lineHeight: 1.55, maxWidth: 720, margin: 0 }}>
               Escolha embaixo o jeito que for melhor para você. Para marcar consulta ou
@@ -27,6 +27,7 @@ function ContatoPage() {
         {/* 4 official channels */}
         <section className="section-pad-sm">
           <div className="container">
+            <h2 className="sr-only">Canais de atendimento</h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }} id="channels-grid">
               <ChannelCard
                 eyebrow="Recepção"
@@ -164,7 +165,7 @@ function ContatoPage() {
                   <div style={{ fontSize: 15, color: "var(--fg-default)", lineHeight: 1.6 }}>
                     Seg–Sex · 7h às 19h<br/>
                     Sábado · 7h às 13h<br/>
-                    <strong style={{ color: "var(--site-accent-700)" }}>Plantão 24h</strong> · tomografia &amp; raio-x
+                    <strong style={{ color: "var(--site-accent-800)" }}>Plantão 24h</strong> · tomografia &amp; raio-x
                   </div>
                 </div>
                 <div>
@@ -258,7 +259,7 @@ function MapPlaceholder() {
           boxShadow: "var(--sh-md)", display: "flex", alignItems: "center", gap: 10,
           border: "1px solid var(--border-subtle)",
         }}>
-          <img src="/assets/logo-mark.png" alt="" style={{ width: 28, height: 28 }}/>
+          <img src="/assets/logo-mark.png" alt="" width="28" height="28" style={{ width: 28, height: 28, objectFit: "contain" }}/>
           <div>
             <div style={{ fontSize: 13, fontWeight: 800, color: "var(--fg-strong)", lineHeight: 1.1 }}>Maxxi Saúde</div>
             <div style={{ fontSize: 11, color: "var(--fg-muted)" }}>Centro · Altamira</div>
@@ -289,4 +290,4 @@ function MapPlaceholder() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<ContatoPage/>);
+renderPage(<ContatoPage/>);

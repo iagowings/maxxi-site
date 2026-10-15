@@ -1,7 +1,8 @@
 # Maxxi Saúde — Site Institucional
 
 Site institucional da **Maxxi Saúde**, clínica de diagnóstico por imagem e análises clínicas em Altamira/PA.  
-Construído com **React 18** (via CDN + Babel standalone) — sem build steps, sem bundler, sem Node.js.
+Construído com **React 18**. O JSX é compilado e cada página é **pré-renderizada em HTML** no build
+(`_build/`, precisa de Node.js) — o conteúdo aparece antes do JavaScript, e o React só liga os botões.
 
 ---
 
@@ -52,7 +53,8 @@ novo-site/
 │   ├── exame.jsx                    ← template de exame (lê window.EXAME_SLUG)
 │   └── legal.jsx                    ← termos + política (lê window.LEGAL_KEY)
 │
-├── _build/                          ← gerador dos index.html (pages.json + gen.ps1)
+├── _build/                          ← build: pages.json + gen.ps1 (HTML) + build.mjs (JSX → dist/ + pré-render)
+├── dist/                            ← GERADO pelo build — não edite à mão
 └── README.md
 ```
 
@@ -65,7 +67,10 @@ novo-site/
 
 ### Opção 1 — Servidor HTTP simples (recomendado)
 
-O site usa `<script type="text/babel" src="...">` que requer um servidor HTTP real (não funciona abrindo direto pelo `file://`).
+Os caminhos são absolutos (`/dist/…`, `/assets/…`), então o site precisa de um servidor HTTP real (não funciona abrindo direto pelo `file://`).
+
+> **Depois de editar qualquer `.jsx`, `pages.json` ou texto, rode o build** (seção abaixo) — senão o site
+> publicado continua com o HTML/JS antigos.
 
 #### Com Python (já vem no macOS/Linux):
 
@@ -106,7 +111,7 @@ Instale a extensão **Web Server for Chrome** ou **Live Server** e aponte para a
 
 | Camada | Tecnologia | Detalhes |
 |--------|-----------|---------|
-| **UI** | React 18 (CDN) | Componentes JSX transpilados no browser via Babel Standalone |
+| **UI** | React 18 (auto-hospedado em `dist/vendor/`) | JSX compilado com esbuild e pré-renderizado em HTML no build; o navegador só hidrata |
 | **Estilo** | CSS puro + Custom Properties | Design tokens em `colors_and_type.css`, sem frameworks CSS |
 | **Roteamento** | Multi-page (MPA), URLs limpas | Cada pasta tem um `index.html` que carrega os mesmos shared modules. URLs espelham `maxxisaude.com` |
 | **Estado** | `localStorage` + Custom Events | O painel "Tweaks" salva preferências e sincroniza entre páginas/abas |
@@ -117,7 +122,8 @@ Instale a extensão **Web Server for Chrome** ou **Live Server** e aponte para a
 <pasta>/index.html
   ├── /colors_and_type.css    (design tokens)
   ├── /styles.css             (estilos globais)
-  ├── React + ReactDOM + Babel (CDN)
+  ├── HTML da página já pronto dentro de #root (pré-render)
+  ├── (depois da 1ª pintura) React + ReactDOM + /dist/shared.js + /dist/pages/<página>.js
   ├── /shared/primitives.jsx  (componentes base)
   ├── /shared/data.jsx        (dados)
   ├── /shared/tweaks.jsx      (customização)
@@ -150,7 +156,7 @@ Edite [`colors_and_type.css`](colors_and_type.css) — todas as cores, fontes, e
 1. Crie `pages/nova-pagina.jsx` com um componente que use `<PageShell>` e `ReactDOM.createRoot(...)`.
 2. Adicione uma entrada em [`_build/pages.json`](_build/pages.json) com `folder` (= slug da URL),
    `title`, `desc` e `page` (`/pages/nova-pagina.jsx`).
-3. Rode o gerador: `powershell -File _build/gen.ps1` — ele cria `nova-pagina/index.html`
+3. Rode o build (uma vez: `cd _build && npm install`): `powershell -File _build/gen.ps1` — ele cria `nova-pagina/index.html`
    com canonical, Open Graph e os scripts corretos.
 4. Adicione o link no menu/rodapé em [`shared/site.jsx`](shared/site.jsx) (use caminho absoluto, ex.: `/nova-pagina/`).
 5. Inclua a URL em [`sitemap.xml`](sitemap.xml).
@@ -168,9 +174,9 @@ Edite [`colors_and_type.css`](colors_and_type.css) — todas as cores, fontes, e
 
 ## ⚠️ Observações
 
-- **Sem build**: não há `npm install`, `webpack`, `vite` ou qualquer passo de compilação. Tudo roda direto no navegador.
-- **Babel no browser**: ideal para prototipagem e sites de pequeno/médio porte. Para produção com milhares de acessos, considere pré-compilar o JSX.
-- **Fonts**: usa [Mulish](https://fonts.google.com/specimen/Mulish) e [Nunito](https://fonts.google.com/specimen/Nunito) via Google Fonts (carregadas no CSS).
+- **Build obrigatório**: `powershell -File _build/gen.ps1` gera os `index.html`, compila o JSX para `dist/` e pré-renderiza cada página (`_build/build.mjs`). Rode após qualquer edição e publique `dist/` junto.
+- **Pré-render**: o HTML de cada página é gerado com as preferências padrão. Código que roda no render não pode depender de `window`/`localStorage` além do que o `build.mjs` simula.
+- **Fonte**: [Mulish](https://fonts.google.com/specimen/Mulish) variável, auto-hospedada em `assets/fonts/` (`@font-face` em `colors_and_type.css`).
 - **Ícones**: SVGs inline estilo Lucide, definidos em `shared/primitives.jsx`. Para adicionar novos ícones, adicione paths no objeto `paths` da função `Icon`.
 
 ---

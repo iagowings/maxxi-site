@@ -120,12 +120,14 @@ function AcessibilidadeBar() {
   return (
     <div className="acess-bar">
       <div className="container acess-row">
-        {temVoz && (
-          <button type="button" onClick={falar} className="acess-btn" aria-pressed={falando}>
-            <Icon name={falando ? "stop" : "volume"} size={24} stroke={2.2}/>
-            <span>{falando ? "Parar a leitura" : "Ouvir esta página"}</span>
-          </button>
-        )}
+        {/* Sempre no layout: as vozes carregam depois da pagina e o botao
+            surgindo empurrava tudo para baixo (layout shift). Escondido, ele
+            tambem sai do leitor de tela e do Tab. */}
+        <button type="button" onClick={falar} className="acess-btn" aria-pressed={falando}
+                style={{ visibility: temVoz ? "visible" : "hidden" }}>
+          <Icon name={falando ? "stop" : "volume"} size={24} stroke={2.2}/>
+          <span>{falando ? "Parar a leitura" : "Ouvir esta página"}</span>
+        </button>
         <button type="button" onClick={alternarLetra} className="acess-btn" aria-pressed={grande}>
           <span className="acess-aa" aria-hidden="true">A</span>
           <span>{grande ? "Letra normal" : "Letra maior"}</span>

@@ -113,7 +113,7 @@ function PortraitCard({ spec, waHref }) {
         </p>
         <div style={{
           display: "flex", alignItems: "center", gap: 8,
-          color: "var(--ms-green-700)",
+          color: "var(--ms-green-800)",
           fontSize: 13, fontWeight: 700,
         }}>
           <Icon name="whatsapp" size={16}/> Agendar pelo WhatsApp

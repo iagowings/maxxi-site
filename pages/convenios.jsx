@@ -20,6 +20,7 @@ function ConveniosPage() {
 
         <section className="section-pad-sm">
           <div className="container">
+            <h2 className="sr-only">Convênios aceitos</h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(220px, 100%), 1fr))", gap: 16 }}>
               {CONVENIOS.map((c) => (
                 <Card key={c} className="reveal" style={{ padding: "22px 24px", display: "flex", alignItems: "center", gap: 14 }}>
@@ -53,4 +54,4 @@ function ConveniosPage() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<ConveniosPage/>);
+renderPage(<ConveniosPage/>);

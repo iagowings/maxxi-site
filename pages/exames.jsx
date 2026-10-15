@@ -47,4 +47,4 @@ function ExamesPage() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<ExamesPage/>);
+renderPage(<ExamesPage/>);

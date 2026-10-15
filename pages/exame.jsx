@@ -87,4 +87,4 @@ function ExamePage() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<ExamePage/>);
+renderPage(<ExamePage/>);

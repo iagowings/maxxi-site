@@ -66,8 +66,8 @@ function Icon({ name, size = 20, stroke = 1.75, className = "", style = {} }) {
 /* ---------------- Eyebrow ---------------- */
 function Eyebrow({ children, color = "accent" }) {
   const c = color === "blue" ? "var(--ms-blue-500)"
-          : color === "green" ? "var(--ms-green-700)"
-          : "var(--site-accent-700)";
+          : color === "green" ? "var(--ms-green-800)"
+          : "var(--site-accent-800)";
   return <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: "0.14em", textTransform: "uppercase", color: c, marginBottom: 14 }}>{children}</div>;
 }
 
@@ -246,7 +246,7 @@ function Card({ children, style = {}, accentBar = false, hoverable = false, padd
 function WhatsAppMark({ size = 24, className = "", style = {}, alt = "" }) {
   return (
     <img
-      src="/assets/whatsapp.png"
+      src="/assets/whatsapp-128.png"
       alt={alt}
       width={size}
       height={size}

@@ -200,50 +200,13 @@ function Tom128Strip() {
         </div>
 
         <div style={{ position: "relative", aspectRatio: "1/1" }}>
-          {/* Scanner ring placeholder */}
-          <div style={{
-            position: "absolute", inset: 0,
-            borderRadius: "50%",
-            background: "conic-gradient(from 0deg, rgba(126,195,101,0.0), rgba(126,195,101,0.4), rgba(126,195,101,0.0))",
-            filter: "blur(8px)",
-          }} />
-          <div style={{
-            position: "absolute", inset: 18,
-            borderRadius: "50%",
-            background: "radial-gradient(circle at 50% 50%, #1a445f 0%, #0d2230 70%)",
-            border: "2px solid rgba(255,255,255,0.10)",
-            boxShadow: "inset 0 0 80px rgba(0,0,0,0.5)",
-          }} />
-          <div style={{
-            position: "absolute", inset: 56,
-            borderRadius: "50%",
-            border: "1px solid rgba(255,255,255,0.18)",
-          }} />
-          <div style={{
-            position: "absolute", inset: 84,
-            borderRadius: "50%",
-            border: "1px dashed rgba(255,255,255,0.20)",
-          }} />
-          {/* Ticks around the ring */}
-          {Array.from({ length: 24 }).map((_, i) => (
-            <div key={i} style={{
-              position: "absolute", left: "50%", top: "50%",
-              width: 2, height: "44%",
-              background: "rgba(255,255,255,0.20)",
-              transform: `translate(-50%, -100%) rotate(${i * 15}deg)`,
-              transformOrigin: "50% 100%",
+          <img src="/assets/tomografia-128-canais.jpg" alt="Paciente em exame no tomógrafo de 128 canais da Maxxi Saúde"
+            width="1536" height="1024" loading="lazy"
+            style={{
+              position: "absolute", inset: 18, width: "calc(100% - 36px)", height: "calc(100% - 36px)",
+              borderRadius: "50%", objectFit: "cover", objectPosition: "62% 50%",
+              border: "2px solid rgba(255,255,255,0.18)",
             }} />
-          ))}
-          {/* Center label */}
-          <div style={{
-            position: "absolute", inset: 0,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            flexDirection: "column", color: "#fff",
-          }}>
-            <div style={{ fontSize: 11, letterSpacing: "0.2em", fontWeight: 700, color: "var(--site-accent-300)", textTransform: "uppercase" }}>Canais</div>
-            <div style={{ fontSize: 88, fontWeight: 900, lineHeight: 1, letterSpacing: "-0.04em", color: "#fff" }}>128</div>
-            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", marginTop: 4 }}>tomografia computadorizada</div>
-          </div>
           {/* Floating chip — replacement image */}
           <div style={{
             position: "absolute", left: -18, bottom: 18,

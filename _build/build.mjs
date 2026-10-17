@@ -43,6 +43,9 @@ const fakeEl = () => ({
   querySelector: () => null, querySelectorAll: () => [], classList: { add: noop, remove: noop }, style: {},
 });
 
+const css = Object.fromEntries(["colors_and_type.css", "styles.css"].map(f =>
+  [f, transformSync(readFileSync(join(root, f), "utf8"), { loader: "css", minify: true }).code.trim()]));
+
 const pages = JSON.parse(readFileSync(join(here, "pages.json"), "utf8").replace(/^﻿/, ""));
 for (const p of pages) {
   let app = null;
@@ -73,6 +76,9 @@ for (const p of pages) {
   const ent = { "&gt;": ">", "&lt;": "<", "&amp;": "&", "&quot;": '"', "&#x27;": "'" };
   const body = renderToString(app).replace(/(<style[^>]*>)([\s\S]*?)(<\/style>)/g,
     (_, a, css, b) => a + css.replace(/&gt;|&lt;|&amp;|&quot;|&#x27;/g, m => ent[m]) + b);
-  writeFileSync(file, html.replace(shell, '<div id="root">' + body + "</div>"));
+  // CSS inline (~5 KB): as duas folhas eram as unicas requisicoes bloqueando a pintura.
+  const inlined = html.replace(/<link rel="stylesheet" href="\/([\w-]+\.css)\?v=\d+"\/>/g,
+    (_, f) => "<style>" + css[f] + "</style>");
+  writeFileSync(file, inlined.replace(shell, '<div id="root">' + body + "</div>"));
   console.log("prerender " + (p.folder || "/"));
 }

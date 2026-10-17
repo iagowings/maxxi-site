@@ -55,7 +55,7 @@ function HomeHero() {
             background: "var(--ms-blue-700)",
           }}>
             <img src="/assets/hero-home.jpg" alt="Interior da clínica Maxxi Saúde em Altamira"
-              srcSet="/assets/hero-home-800.jpg 800w, /assets/hero-home.jpg 1200w"
+              srcSet="/assets/hero-home-660.jpg 660w, /assets/hero-home-800.jpg 800w, /assets/hero-home.jpg 1200w"
               sizes="(max-width: 500px) calc(100vw - 40px), (max-width: 980px) 460px, 500px" width="1200" height="1500" fetchpriority="high"
               style={{
                 position: "absolute", inset: 0,
